@@ -192,7 +192,19 @@ void RotationHelper::printTransformationMatrix() {
 }
 
 
-// TODO write  this
+// TODO test  this
 void RotationHelper::rightDotProduct(GLfloat *dest, GLfloat *operand) {
+    float combined[4][4] ={};
+    int i, j, k;
+    for(i = 0; i < 4; i++){
+        for(j = 0; j < 4; j++){
+            for(k = 0; k < 4; k++) {
+                combined[i][j] += *(dest + i + 4 * k) * *(operand + 4 * j + k);
+            }
+        }
+    }
 
+    for (i = 0; i < 16; i++){
+        *(dest + i) = combined[i%4][i/4];
+    }
 }

@@ -54,7 +54,7 @@ void reshape(int w, int h) {
  */
 void displayObject() {
     int i;
-    GLfloat * combinedTransformation;// = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
+    GLfloat * combinedTransformation;
     glLoadIdentity();
     glColor3f(0.1, 0.45, 0.1);
     glMatrixMode(GL_MODELVIEW);
@@ -73,6 +73,7 @@ void displayObject() {
     for (i = 0; i < 5; i++) {
         glPushMatrix();
         if (parts[i]->parent != nullptr) {
+            combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
             //finally, go with parent
             glMultMatrixf(parts[i]->parent->combinedTransformation);
             //TODO test
