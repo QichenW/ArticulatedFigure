@@ -71,9 +71,9 @@ void displayObject() {
     ReverseKinematics::setLocalRotation(parts);
 
     for (i = 0; i < 5; i++) {
+        combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
         glPushMatrix();
         if (parts[i]->parent != nullptr) {
-            combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
             //finally, go with parent
             glMultMatrixf(parts[i]->parent->combinedTransformation);
             //TODO test
