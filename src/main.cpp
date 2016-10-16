@@ -75,58 +75,25 @@ void displayObject() {
         glPushMatrix();
         if (parts[i]->parent != nullptr) {
             //finally, go with parent
-            glMultMatrixf(parts[i]->parent->combinedTransformation);
-            //TODO test
             RotationHelper::rightDotProduct(combinedTransformation, parts[i]->parent->combinedTransformation);
             //third, move the part to the appropriate position w.r.t parent
-            glMultMatrixf(parts[i]->secondAlignFlatMatrix);
-            //TODO test this
             RotationHelper::rightDotProduct(combinedTransformation, parts[i]->secondAlignFlatMatrix);
             //second, local rotate
-            glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(
-                    parts[i]->localRotation, nullptr, false));
-            //TODO test this
             RotationHelper::rightDotProduct(combinedTransformation,
                                             RotationHelper::generateFlattenedTransformationMatrix(
                                                     parts[i]->localRotation, nullptr, false));
             //first, move w.r.t parent to align axis
-            glMultMatrixf(parts[i]->firstAlignFlatMatrix);
-            //TODO test this
             RotationHelper::rightDotProduct(combinedTransformation,parts[i]->firstAlignFlatMatrix);
-            // TODO calculate and save combined transformation
             parts[i]->setCombinedTransitions(combinedTransformation);
         } else {
             combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
                     parts[i]->localRotation, parts[i]->localTranslation, false);
             parts[i]->setCombinedTransitions(combinedTransformation);
-            glMultMatrixf(combinedTransformation);
         }
+        glMultMatrixf(combinedTransformation);
         glCallList(parts[i]->objListID);
         glPopMatrix();
     }
-
-
-//    //draw left thigh
-//    glPushMatrix();
-//
-//        //finally, go with parent
-////    glMultMatrixf(parts[1]->parent->combinedTransformation);
-//    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1});
-//
-//    //third, move the thigh to the appropriate position w.r.t torso
-//    glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(
-//            (float *) NO_VECTOR3, (float *) LEFT_TIHGH_TRANSLTE_2, false));
-//
-//    //second, rotate and third align joint as if it's parent was as the origin
-//    glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(
-//            rotationLeftThigh, nullptr, false));
-//    //first, align axis
-//    glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(
-//            (float *) NO_VECTOR3, (float *) THIGHS_TRANSLTE_1, false));
-//
-//    glCallList(parts[1]->objListID);
-//    glPopMatrix();
-
 }
 
 /****
