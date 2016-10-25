@@ -117,15 +117,8 @@ void RotationHelper::getHomogeneousFromEulerAngle(float *eulerAngle) {
 
     // multiply the transformation matrix with three rotation matrices
     applyRotation(homogeneousPitch);
-    //for debug only
-    printTransformationMatrix();
     applyRotation(homogeneousYaw);
-    //for debug only
-    printTransformationMatrix();
     applyRotation(homogeneousRoll);
-
-    //for debug only
-    printTransformationMatrix();
 }
 
 /****

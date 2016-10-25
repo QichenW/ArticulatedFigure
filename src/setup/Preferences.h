@@ -9,6 +9,7 @@
 #include <GLUT/glut.h>
 #include <string>
 #include <vector>
+#include <matrix/CoefficientMatrices.h>
 
 #else
 #include <GL/glut.h>
@@ -29,9 +30,8 @@ private:
 
 public:
     Preferences();
-    GLfloat translationCoefficientMatrix[4][3] ={};
-    GLfloat eulerRotationCoefficientMatrix[4][3] ={};
-    GLfloat quaterRotationCoefficientMatrix[4][4]={};
+    CoefficientMatrices * pCoefficientMatrices;
+    CoefficientMatrices *currentCoefficientMatrices;
 
     bool getAreKeyFramesLoaded();
 

@@ -28,7 +28,8 @@ static const GLfloat basisBsplineMatrix[4][4] = {
  * @param interpolationMode suggest either catmull-rom or b-spline
  * @param controlPoints are either x-y-z coordinates or pitch, yaw, roll
  */
-void InterpolationHelper::calculate3dCoefficientMatrix(GLfloat (*dest)[3], int interpolationMode, float **controlPoints) {
+void InterpolationHelper::calculate3dCoefficientMatrix(GLfloat (*dest)[3], int interpolationMode,
+                                                       float **controlPoints, int offset) {
     int i,j,k;
     for (i = 0; i < NUMBER_OF_CONTROL_POINTS; i++){
         for (j = 0; j < POSITION_OR_EULER_DIMENSION; j++){
@@ -36,10 +37,10 @@ void InterpolationHelper::calculate3dCoefficientMatrix(GLfloat (*dest)[3], int i
             for (k = 0;  k< NUMBER_OF_CONTROL_POINTS; k++){
                 if (interpolationMode == 0) {
                     //use catmull-rom for interpolation
-                    dest[i][j] += basisCatmullMatrix[i][k] * controlPoints[k][j];
+                    dest[i][j] += basisCatmullMatrix[i][k] * controlPoints[k + offset][j];
                 } else {
                     // use b-spline
-                    dest[i][j] += basisBsplineMatrix[i][k] * controlPoints[k][j];
+                    dest[i][j] += basisBsplineMatrix[i][k] * controlPoints[k + offset][j];
                 }
             }
         }

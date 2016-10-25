@@ -21,7 +21,7 @@ public:
     const static int NUMBER_OF_CONTROL_POINTS = 4;
     const static int QUATERNION_DIMENSION = 4;
     const static int POSITION_OR_EULER_DIMENSION = 3;
-    static void calculate3dCoefficientMatrix(GLfloat (*dest)[3], int interpolationMode, float **controlPoints);
+    static void calculate3dCoefficientMatrix(GLfloat (*dest)[3], int interpolationMode, float **controlPoints, int offset);
 
     static void prepareTimeVector(GLfloat *tVector, GLfloat t);
 

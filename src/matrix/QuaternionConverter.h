@@ -17,7 +17,7 @@ using namespace std;
 class QuaternionConverter {
 
 public:
-    static void eulerAngleToQuaternion(GLfloat dest[4][4], GLfloat **listOfEulerAngle);
+    static void eulerAngleToQuaternion(GLfloat dest[4][4], GLfloat **listOfEulerAngle, int offset);
     static GLfloat getMagnitudeOfQuaternion(GLfloat quaternion[4]);
 
 private:

@@ -12,16 +12,16 @@
  * @param listOfEulerAngle the euler angle user input
  * @param amount how may frames are there
  */
-void QuaternionConverter::eulerAngleToQuaternion(GLfloat dest[4][4], GLfloat **listOfEulerAngle) {
+void QuaternionConverter::eulerAngleToQuaternion(GLfloat dest[4][4], GLfloat **listOfEulerAngle, int offset) {
     GLfloat qx[4][4]={};
     GLfloat qy[4][4]={};
     GLfloat qz[4][4]={};
     GLfloat pitch[4], yaw[4], roll[4];
     int i;
     for (i = 0; i < 4; i++){
-        pitch[i] = (float) M_PI / 180 * (listOfEulerAngle[i][0]);
-        yaw[i] = (float) M_PI / 180 * (listOfEulerAngle[i][1]);
-        roll[i] = (float) M_PI / 180 * (listOfEulerAngle[i][2]);
+        pitch[i] = (float) M_PI / 180 * (listOfEulerAngle[i + offset][0]);
+        yaw[i] = (float) M_PI / 180 * (listOfEulerAngle[i + offset][1]);
+        roll[i] = (float) M_PI / 180 * (listOfEulerAngle[i + offset][2]);
         // get the quaternions for x,y,z axis, then combine them
         qx[i][0] = cosf(pitch[i] / 2);
         qy[i][0] = cosf(yaw[i] / 2);

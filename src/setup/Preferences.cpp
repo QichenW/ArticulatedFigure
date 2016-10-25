@@ -58,6 +58,8 @@ void Preferences::setKeyFrameAmount(int i) {
     listOfPositions = new GLfloat*[i];
     listOfEulerAngle = new GLfloat*[i];
     //listOfQuaternion = new GLfloat*[i];
+
+    pCoefficientMatrices = new CoefficientMatrices(orientationMode == 0, 0, keyFrameAmount - 3);
 }
 
 int Preferences::getKeyFrameAmount() const {
@@ -117,24 +119,50 @@ bool Preferences::getIsPlaying() {
  */
 void Preferences::calculateCoefficientMatrices() {
 
-    // calculate the position coefficient matrix for t
-    // then store in translationCoefficientMatrix
-    InterpolationHelper::calculate3dCoefficientMatrix(translationCoefficientMatrix, interpolationMode,
-                                                      listOfPositions);
+    int i;
+    currentCoefficientMatrices = pCoefficientMatrices;
+    for (i = 0; i < keyFrameAmount - 3; i++){
 
-    if (orientationMode == 0) {
-        // calculate the euler angle coefficient matrix for t
+        // calculate the position coefficient matrix for t
         // then store in translationCoefficientMatrix
-        InterpolationHelper::calculate3dCoefficientMatrix(eulerRotationCoefficientMatrix, interpolationMode,
-                                                          listOfEulerAngle);
-    } else {
-        //convert the user-provided euler angles to quaternions
-        QuaternionConverter::eulerAngleToQuaternion(listOfQuaternion, listOfEulerAngle);
-        //TODO then get the quaternion version of coefficient matrix
-        InterpolationHelper::calculate4dCoefficientMatrix(quaterRotationCoefficientMatrix, interpolationMode,
-                                                          listOfQuaternion);
-    }
+        InterpolationHelper::calculate3dCoefficientMatrix(currentCoefficientMatrices->translation,
+                                                          interpolationMode, listOfPositions, i);
 
+        if (orientationMode == 0) {
+            // calculate the euler angle coefficient matrix for t
+            // then store in translationCoefficientMatrix
+            InterpolationHelper::calculate3dCoefficientMatrix(currentCoefficientMatrices->eRotation,
+                                                              interpolationMode, listOfEulerAngle, i);
+        } else {
+            //convert the user-provided euler angles to quaternions
+            QuaternionConverter::eulerAngleToQuaternion(listOfQuaternion, listOfEulerAngle, i);
+            //TODO then get the quaternion version of coefficient matrix
+            InterpolationHelper::calculate4dCoefficientMatrix(currentCoefficientMatrices->qRotation,
+                                                              interpolationMode, listOfQuaternion);
+        }
+        currentCoefficientMatrices = currentCoefficientMatrices->next;
+//        /***
+//         * old code below
+//         */
+//
+//        // calculate the position coefficient matrix for t
+//        // then store in translationCoefficientMatrix
+//        InterpolationHelper::calculate3dCoefficientMatrix(translationCoefficientMatrix, interpolationMode,
+//                                                          listOfPositions);
+//
+//        if (orientationMode == 0) {
+//            // calculate the euler angle coefficient matrix for t
+//            // then store in translationCoefficientMatrix
+//            InterpolationHelper::calculate3dCoefficientMatrix(eulerRotationCoefficientMatrix, interpolationMode,
+//                                                              listOfEulerAngle);
+//        } else {
+//            //convert the user-provided euler angles to quaternions
+//            QuaternionConverter::eulerAngleToQuaternion(listOfQuaternion, listOfEulerAngle);
+//            //TODO then get the quaternion version of coefficient matrix
+//            InterpolationHelper::calculate4dCoefficientMatrix(quaterRotationCoefficientMatrix, interpolationMode,
+//                                                              listOfQuaternion);
+//        }
+    }
 }
 
 GLfloat Preferences::getTimeProgress() {

@@ -25,6 +25,7 @@ static const GLfloat RIGHT_CALF_TRANSLTE_2[3] ={0,-4.25,0};
 
 Part *parts[5];
 Preferences prefs;
+int curveSegmentAmount, currentSegment;
 GLfloat increment = 0.005, angleInterval = 6;
 GLfloat rotationTorso[3] = {0,0,0}, rotationLeftThigh[3] = {}, rotationRightThigh[3]={};
 GLfloat translationTorso[3] = {0,0,-15}, translationLeftThigh[3] = {}, translationRightThigh[3]={};
@@ -36,7 +37,8 @@ int window;
 
 static char* CALF_OBJ_NAME = (char *) "calf.obj";
 static char* THIGH_OBJ_NAME = (char *) "thigh.obj";
-static char* TORSO_OBJ_NAME = (char *) "torso.obj";
+static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
+//static char* TORSO_OBJ_NAME = (char *) "torso.obj";
 
 void drawFrame();
 
@@ -61,10 +63,10 @@ void displayObject() {
     //move the model view away from the camera, so that we are not inside the object1
     glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-50,1});
 
-    rotationLeftThigh[0] +=angleInterval;
-    if (rotationLeftThigh[0] > 60 || rotationLeftThigh[0] < -60) {
-        angleInterval *= -1;
-    }
+//    rotationLeftThigh[0] +=angleInterval;
+//    if (rotationLeftThigh[0] > 60 || rotationLeftThigh[0] < -60) {
+//        angleInterval *= -1;
+//    }
     //TODO insert real local rotation and translation
     //only the local translation of torso change
     ReverseKinematics::setLocalTranslation(parts[0]);
@@ -106,26 +108,43 @@ void drawFrame() {
     glColor3f(0.1, 0.45, 0.1);
 
     // prepare the T vector for current time, then increment time.
-    if(prefs.getTimeProgress()<= 1.0){
+    if(prefs.getTimeProgress()< 1.0){
         InterpolationHelper::prepareTimeVector(tVector, prefs.getTimeProgress());
         prefs.timeProceed(increment);
+    } else if (currentSegment <= curveSegmentAmount) {
+        prefs.currentCoefficientMatrices->printCurrentCoefficientMatrices();
+        if (currentSegment == curveSegmentAmount) {
+            glPopMatrix();
+            prefs.setIsPlaying(false);
+            return;
+        }
+        //TODO trim the code here
+        currentSegment++;
+        prefs.resetTimeProgress();
+        prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
+        // move and rotate the object1
+        glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
+        // draw the faces of the object1
+        glCallList(1);
+        glPopMatrix();
+        return;
     }
 
     // prepare the translation vector
     InterpolationHelper::
-    prepareTranslationOrEulerAngleVector(translation, tVector, prefs.translationCoefficientMatrix);
+    prepareTranslationOrEulerAngleVector(translation, tVector, prefs.currentCoefficientMatrices->translation);
 
     if (prefs.getOrientationMode() == 0) {
         // if getting euler angle version of animation
         // prepare the euler angle vector
         InterpolationHelper::
-        prepareTranslationOrEulerAngleVector(eulerAngle, tVector, prefs.eulerRotationCoefficientMatrix);
+        prepareTranslationOrEulerAngleVector(eulerAngle, tVector, prefs.currentCoefficientMatrices->eRotation);
         // move the object1
         glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(eulerAngle, translation, false));
     } else {
         // if getting quaternion version of animation
         // prepare the quaternion vector
-        InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.quaterRotationCoefficientMatrix);
+        InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.currentCoefficientMatrices->qRotation);
         // move and rotate the object1
         glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
     }
@@ -144,7 +163,11 @@ void display(void) {
             prefs.getOrientationMode(), prefs.getInterpolationMode(), prefs.getIsPlaying());
     if(!prefs.getIsPlaying()){
         displayObject();
+        //TODO the following two line is bad practice
+        currentSegment = 1;
+        prefs.currentCoefficientMatrices = prefs.pCoefficientMatrices;
     } else {
+        curveSegmentAmount = prefs.getKeyFrameAmount() - 3;
         drawFrame();
     }
     glutSwapBuffers(); //swap the buffers
