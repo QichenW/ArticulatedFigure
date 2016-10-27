@@ -4,11 +4,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/InterpolationHelper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/matrix/CoefficientMatrices.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/InterpolationHelper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/QuaternionConverter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/RotationHelper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/CoefficientMatrices.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/matrix/CoefficientMatrices.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/RotationHelper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/QuaternionConverter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/setup/SetupFileLoader.cpp" isTestSource="false" />

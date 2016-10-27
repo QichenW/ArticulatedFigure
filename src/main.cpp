@@ -37,11 +37,13 @@ int window;
 
 static char* CALF_OBJ_NAME = (char *) "calf.obj";
 static char* THIGH_OBJ_NAME = (char *) "thigh.obj";
-static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
-//static char* TORSO_OBJ_NAME = (char *) "torso.obj";
+//static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
+static char* TORSO_OBJ_NAME = (char *) "torso.obj";
 
 void drawFrame();
 
+
+void drawLinks(bool);
 
 void reshape(int w, int h) {
     glViewport(0, 0, w, h);
@@ -52,26 +54,30 @@ void reshape(int w, int h) {
 }
 
 /***
- * display the object when idle
+ * display the figure when idle
  */
 void displayObject() {
-    int i;
-    GLfloat * combinedTransformation;
+
     glLoadIdentity();
     glColor3f(0.1, 0.45, 0.1);
     glMatrixMode(GL_MODELVIEW);
     //move the model view away from the camera, so that we are not inside the object1
     glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-50,1});
 
-//    rotationLeftThigh[0] +=angleInterval;
-//    if (rotationLeftThigh[0] > 60 || rotationLeftThigh[0] < -60) {
-//        angleInterval *= -1;
-//    }
     //TODO insert real local rotation and translation
     //only the local translation of torso change
     ReverseKinematics::setLocalTranslation(parts[0]);
     ReverseKinematics::setLocalRotation(parts);
 
+    drawLinks(false);
+}
+
+/***
+ * generate the transformation matrices for every link (torso, tighs, calfs) w.r.t. world space, then draw them
+ */
+void drawLinks(bool isKeyFraming) {
+    int i;
+    GLfloat * combinedTransformation;
     for (i = 0; i < 5; i++) {
         combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
         glPushMatrix();
@@ -85,12 +91,15 @@ void displayObject() {
                                             RotationHelper::generateFlattenedTransformationMatrix(
                                                     parts[i]->localRotation, nullptr, false));
             //first, move w.r.t parent to align axis
-            RotationHelper::rightDotProduct(combinedTransformation,parts[i]->firstAlignFlatMatrix);
+            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->firstAlignFlatMatrix);
             parts[i]->setCombinedTransitions(combinedTransformation);
         } else {
-            combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
-                    parts[i]->localRotation, parts[i]->localTranslation, false);
-            parts[i]->setCombinedTransitions(combinedTransformation);
+            if (!isKeyFraming) {
+                combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
+                        parts[i]->localRotation, parts[i]->localTranslation, false);
+                parts[i]->setCombinedTransitions(combinedTransformation);
+            }
+            //TODO if (isKeyFraming)
         }
         glMultMatrixf(combinedTransformation);
         glCallList(parts[i]->objListID);
