@@ -22,9 +22,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/ui/StringUtils.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ui/StringUtils.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/articulation/Part.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/articulation/ReverseKinematics.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/articulation/ForwardKinematics.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/articulation/Part.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/articulation/ReverseKinematics.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/articulation/ForwardKinematics.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/nfd/nfd_common.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/nfd/CMakeLists.txt" isTestSource="false" />

@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES src/main.cpp src/setup/SimpleObjLoader.cpp src/setup/SimpleObjLoader.h src/matrix/RotationHelper.cpp
         src/matrix/RotationHelper.h src/ui/UserInputManager.cpp src/ui/UserInputManager.h
-        src/ui/StringUtils.cpp src/ui/StringUtils.h src/setup/Preferences.cpp src/setup/Preferences.h src/setup/SetupFileLoader.cpp src/setup/SetupFileLoader.h src/matrix/InterpolationHelper.cpp src/matrix/InterpolationHelper.h src/matrix/QuaternionConverter.cpp src/matrix/QuaternionConverter.h src/articulation/Part.cpp src/articulation/Part.h src/articulation/ReverseKinematics.cpp src/articulation/ReverseKinematics.h src/matrix/CoefficientMatrices.cpp src/matrix/CoefficientMatrices.h)
+        src/ui/StringUtils.cpp src/ui/StringUtils.h src/setup/Preferences.cpp src/setup/Preferences.h src/setup/SetupFileLoader.cpp src/setup/SetupFileLoader.h src/matrix/InterpolationHelper.cpp src/matrix/InterpolationHelper.h src/matrix/QuaternionConverter.cpp src/matrix/QuaternionConverter.h src/articulation/Part.cpp src/articulation/Part.h src/articulation/ForwardKinematics.cpp src/articulation/ForwardKinematics.h src/matrix/CoefficientMatrices.cpp src/matrix/CoefficientMatrices.h)
 
 #########################################################
 # Include Files
@@ -41,7 +41,7 @@ target_link_libraries(Animations ${EXTRA_LIBS} nativefiledialog)
 if (NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
 
     # list of files for which we add a copy rule
-    set(object_files torso.obj thigh.obj calf.obj teddy.obj)
+    set(object_files torso.obj thigh.obj calf.obj foot.obj teddy.obj)
 
     foreach(item IN LISTS object_files)
         message(STATUS ${item})
@@ -57,6 +57,7 @@ endif()
 add_custom_target(obj ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/torso.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/thigh.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/calf.obj"
+        "${CMAKE_CURRENT_BINARY_DIR}/foot.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/teddy.obj")
 # add the dependency project to the project target
 ADD_DEPENDENCIES(Animations obj)

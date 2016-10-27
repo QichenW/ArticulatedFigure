@@ -11,22 +11,28 @@
 #include <StringUtils.h>
 #include <matrix/InterpolationHelper.h>
 #include <articulation/Part.h>
-#include <articulation/ReverseKinematics.h>
+#include <articulation/ForwardKinematics.h>
 
 using namespace std;
 
 static const GLfloat NO_VECTOR3[3] ={0,0,0};
+
 static const GLfloat THIGHS_TRANSLTE_1[3] ={0,-4.5,0};
 static const GLfloat LEFT_TIHGH_TRANSLTE_2[3] ={-2,-2.5,0};
 static const GLfloat RIGHT_TIHGH_TRANSLTE_2[3] ={2,-2.5,0};
+
 static const GLfloat CALFS_TRANSLTE_1[3] ={0,-4.25,0};
 static const GLfloat LEFT_CALF_TRANSLTE_2[3] ={0,-4.25,0};
 static const GLfloat RIGHT_CALF_TRANSLTE_2[3] ={0,-4.25,0};
 
-Part *parts[5];
+static const GLfloat FEET_TRANSLTE_1[3] ={0,-4.5,0};
+static const GLfloat LEFT_FOOT_TRANSLTE_2[3] ={0,-0.2,-1};
+static const GLfloat RIGHT_FOOT_TRANSLTE_2[3] ={0,-0.2,-1};
+
+Part *parts[7];
 Preferences prefs;
 int curveSegmentAmount, currentSegment;
-GLfloat increment = 0.005, angleInterval = 6;
+GLfloat increment = 0.003, angleInterval = 6;
 GLfloat rotationTorso[3] = {0,0,0}, rotationLeftThigh[3] = {}, rotationRightThigh[3]={};
 GLfloat translationTorso[3] = {0,0,-15}, translationLeftThigh[3] = {}, translationRightThigh[3]={};
 GLfloat rotationLeftCalf[3] = {}, rotationRightCalf[3]={};
@@ -39,6 +45,7 @@ static char* CALF_OBJ_NAME = (char *) "calf.obj";
 static char* THIGH_OBJ_NAME = (char *) "thigh.obj";
 //static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
 static char* TORSO_OBJ_NAME = (char *) "torso.obj";
+static char *FOOT_OBJ_NAME = (char *) "foot.obj";
 
 void drawFrame();
 
@@ -66,8 +73,8 @@ void displayObject() {
 
     //TODO insert real local rotation and translation
     //only the local translation of torso change
-    ReverseKinematics::setLocalTranslation(parts[0]);
-    ReverseKinematics::setLocalRotation(parts);
+    ForwardKinematics::setLocalTranslation(parts[0]);
+    ForwardKinematics::setLocalRotation(parts);
 
     drawLinks(false);
 }
@@ -78,7 +85,7 @@ void displayObject() {
 void drawLinks(bool isKeyFraming) {
     int i;
     GLfloat * combinedTransformation;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 7; i++) {
         combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
         glPushMatrix();
         if (parts[i]->parent != nullptr) {
@@ -98,8 +105,13 @@ void drawLinks(bool isKeyFraming) {
                 combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
                         parts[i]->localRotation, parts[i]->localTranslation, false);
                 parts[i]->setCombinedTransitions(combinedTransformation);
+            } else{
+                //TODO if (isKeyFraming)
+                combinedTransformation = RotationHelper::
+                generateFlattenedTransformationMatrix(quaternion, translation, true);
+                parts[i]->setCombinedTransitions(combinedTransformation);
             }
-            //TODO if (isKeyFraming)
+
         }
         glMultMatrixf(combinedTransformation);
         glCallList(parts[i]->objListID);
@@ -112,8 +124,8 @@ void drawLinks(bool isKeyFraming) {
  */
 void drawFrame() {
     glPushMatrix();
-    //move the model view away from the camera, so that we are not inside the object1
-    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-150,1});
+    //move the model view away from the camera, so that we are not inside the object
+    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-60,1});
     glColor3f(0.1, 0.45, 0.1);
 
     // prepare the T vector for current time, then increment time.
@@ -127,14 +139,16 @@ void drawFrame() {
             prefs.setIsPlaying(false);
             return;
         }
-        //TODO trim the code here
+        //TODO figure out what causes the minor pause
         currentSegment++;
         prefs.resetTimeProgress();
         prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
-        // move and rotate the object1
-        glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
+        // move and rotate the figure
+        ForwardKinematics::setLocalRotation(parts);
+        drawLinks(true);
+        //glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
         // draw the faces of the object1
-        glCallList(1);
+        //glCallList(1);
         glPopMatrix();
         return;
     }
@@ -155,10 +169,12 @@ void drawFrame() {
         // prepare the quaternion vector
         InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.currentCoefficientMatrices->qRotation);
         // move and rotate the object1
-        glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
+        ForwardKinematics::setLocalRotation(parts);
+        drawLinks(true);
+        //glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(quaternion, translation, true));
     }
     // draw the faces of the object1
-    glCallList(1);
+    //glCallList(1);
     glPopMatrix();
 }
 
@@ -207,7 +223,10 @@ int main(int argc, char **argv) {
     parts[2] = new Part(3, thighObjID, (GLfloat *) THIGHS_TRANSLTE_1, (GLfloat *) RIGHT_TIHGH_TRANSLTE_2,parts[0]);
     GLuint calfObjID = SimpleObjLoader::loadObj(CALF_OBJ_NAME, 3);
     parts[3] = new Part(4, calfObjID, (GLfloat *) CALFS_TRANSLTE_1, (GLfloat *) LEFT_CALF_TRANSLTE_2, parts[1]);
-    parts[4] = new Part(5, calfObjID, (GLfloat *) THIGHS_TRANSLTE_1, (GLfloat *) RIGHT_CALF_TRANSLTE_2, parts[2]);
+    parts[4] = new Part(5, calfObjID, (GLfloat *) CALFS_TRANSLTE_1, (GLfloat *) RIGHT_CALF_TRANSLTE_2, parts[2]);
+    GLuint footObjID = SimpleObjLoader::loadObj(FOOT_OBJ_NAME, 4);
+    parts[5] = new Part(6, footObjID, (GLfloat *) FEET_TRANSLTE_1, (GLfloat *) LEFT_FOOT_TRANSLTE_2, parts[3]);
+    parts[6] = new Part(7, footObjID, (GLfloat *) FEET_TRANSLTE_1, (GLfloat *) RIGHT_FOOT_TRANSLTE_2, parts[4]);
 
     // Create the menu structure and attach it to the right mouse button
     UserInputManager::createMouseMenu();

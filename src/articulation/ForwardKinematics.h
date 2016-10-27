@@ -8,7 +8,7 @@
 
 #include "Part.h"
 
-class ReverseKinematics {
+class ForwardKinematics {
 
 public:
     static void setLocalRotation(Part *parts[5]);

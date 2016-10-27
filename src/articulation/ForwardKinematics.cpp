@@ -2,7 +2,7 @@
 // Created by Qichen on 10/14/16.
 //
 
-#include "ReverseKinematics.h"
+#include "ForwardKinematics.h"
 
 
 
@@ -15,7 +15,7 @@ GLfloat deltaAngleLeftCalf[4] = {-1,1,0,0};
 GLfloat deltaAngleRightCalf[4] = {0,0,-1,1};
 int phase = 0;
 GLfloat xAngles[5] ={0,-30,30,0,0};
-void ReverseKinematics::setLocalRotation(Part **parts) {
+void ForwardKinematics::setLocalRotation(Part **parts) {
     int i;
     if (phase == 0 && xAngles[1] >= 0) {
         phase = 1;
@@ -47,7 +47,7 @@ void ReverseKinematics::setLocalRotation(Part **parts) {
 
 }
 
-void ReverseKinematics::setLocalTranslation(Part *torso) {
+void ForwardKinematics::setLocalTranslation(Part *torso) {
     if (torsoPos <= -51 || torsoPos >= 51) {
         speed *= -1;
     }

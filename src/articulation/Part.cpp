@@ -14,6 +14,15 @@ void Part::setCombinedTransitions(GLfloat *t) {
     }
 }
 
+/**
+ *
+ * @param id = link id
+ * @param listID = the polygon drawing list of this object
+ * @param fat = first align translate
+ * @param sat = second align translate
+ * @param p = parent part
+ * @return
+ */
 Part::Part(GLuint id, GLuint listID, GLfloat *fat, GLfloat *sat, Part * p) {
     objectID = id;
     objListID = listID;
