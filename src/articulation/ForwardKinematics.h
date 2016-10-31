@@ -11,7 +11,7 @@
 class ForwardKinematics {
 
 public:
-    static void setLocalRotation(Part *parts[5]);
+    static void setLocalRotation(Part *parts[5], bool isKeyFraming);
 
     static void setLocalTranslation(Part *torso);
 };
