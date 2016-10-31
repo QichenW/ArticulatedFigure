@@ -41,7 +41,7 @@ target_link_libraries(Animations ${EXTRA_LIBS} nativefiledialog)
 if (NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
 
     # list of files for which we add a copy rule
-    set(object_files torso.obj thigh.obj calf.obj foot.obj teddy.obj)
+    set(object_files head.obj torso.obj thigh.obj calf.obj foot.obj teddy.obj)
 
     foreach(item IN LISTS object_files)
         message(STATUS ${item})
@@ -54,7 +54,8 @@ if (NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
 endif()
 
 # files are only copied if a target depends on them
-add_custom_target(obj ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/torso.obj"
+add_custom_target(obj ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/head.obj"
+        "${CMAKE_CURRENT_BINARY_DIR}/torso.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/thigh.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/calf.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/foot.obj"

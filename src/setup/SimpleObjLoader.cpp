@@ -20,7 +20,7 @@ vector<GLfloat> vx, vy,vz;
  * @param fileName
  * @return identifier of the object
  */
-GLuint SimpleObjLoader::loadObj(char *fileName, int objNo) {
+GLuint SimpleObjLoader::loadObj(char *fileName, int objNo, float scale) {
 
     GLfloat x, y, z;
     GLuint object =objNo;
@@ -39,9 +39,9 @@ GLuint SimpleObjLoader::loadObj(char *fileName, int objNo) {
         if (strcmp(firstWord, "v") == 0) {
             fscanf(filePointer, "%f %f %f", &x, &y, &z);
             // glVertex3f(x, y, z);
-            vx.push_back(x);
-            vy.push_back(y);
-            vz.push_back(z);
+            vx.push_back(x*scale);
+            vy.push_back(y*scale);
+            vz.push_back(z*scale);
         }
     }
 

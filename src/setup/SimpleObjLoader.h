@@ -19,7 +19,7 @@
 class SimpleObjLoader
 {
 public:
-    static GLuint loadObj(char *fileName, int objNo);
+    static GLuint loadObj(char *fileName, int objNo, float scale);
 
     static void recordObjectAsTrianglesWithNoVt();
 

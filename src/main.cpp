@@ -16,10 +16,11 @@
 using namespace std;
 
 static const GLfloat NO_VECTOR3[3] ={0,0,0};
+static const GLfloat HEAD_TRANSLTE[3] ={0,13,0};
 
 static const GLfloat THIGHS_TRANSLTE_1[3] ={0,-4.5,0};
-static const GLfloat LEFT_TIHGH_TRANSLTE_2[3] ={-2,-2.5,0};
-static const GLfloat RIGHT_TIHGH_TRANSLTE_2[3] ={2,-2.5,0};
+static const GLfloat LEFT_TIHGH_TRANSLTE_2[3] ={-2,-6,0};
+static const GLfloat RIGHT_TIHGH_TRANSLTE_2[3] ={2,-6,0};
 
 static const GLfloat CALFS_TRANSLTE_1[3] ={0,-4.25,0};
 static const GLfloat LEFT_CALF_TRANSLTE_2[3] ={0,-4.25,0};
@@ -29,7 +30,7 @@ static const GLfloat FEET_TRANSLTE_1[3] ={0,-4.5,0};
 static const GLfloat LEFT_FOOT_TRANSLTE_2[3] ={0,-0.2,-1};
 static const GLfloat RIGHT_FOOT_TRANSLTE_2[3] ={0,-0.2,-1};
 
-Part *parts[7];
+Part *parts[8];
 Preferences prefs;
 int curveSegmentAmount, currentSegment;
 GLfloat increment = 0.008, angleInterval = 6;
@@ -43,8 +44,9 @@ int window;
 
 static char* CALF_OBJ_NAME = (char *) "calf.obj";
 static char* THIGH_OBJ_NAME = (char *) "thigh.obj";
-static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
-//static char* TORSO_OBJ_NAME = (char *) "torso.obj";
+static char* TORSO_OBJ_NAME = (char *) "torso.obj";
+//static char* TORSO_OBJ_NAME = (char *) "teddy.obj";
+static char* HEAD_OBJ_NAME = (char *) "head.obj";
 static char *FOOT_OBJ_NAME = (char *) "foot.obj";
 
 void drawFrame();
@@ -69,7 +71,7 @@ void displayObject() {
     glColor3f(0.1, 0.45, 0.1);
     glMatrixMode(GL_MODELVIEW);
     //move the model view away from the camera, so that we are not inside the object1
-    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-50,1});
+    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,10,-20,1});
 
     //TODO insert real local rotation and translation
     //only the local translation of torso change
@@ -85,7 +87,7 @@ void displayObject() {
 void drawLinks(bool isKeyFraming) {
     int i;
     GLfloat * combinedTransformation;
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < sizeof(parts)/ sizeof(parts[0]); i++) {
         combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
         glPushMatrix();
 
@@ -124,9 +126,10 @@ void drawLinks(bool isKeyFraming) {
  * This function is for drawing the frames in the interpolated animation.
  */
 void drawFrame() {
+    glLoadIdentity();
     glPushMatrix();
     //move the model view away from the camera, so that we are not inside the object
-    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,0,-60,1});
+    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,10,-95,1});
     glColor3f(0.1, 0.45, 0.1);
 
     // prepare the T vector for current time, then increment time.
@@ -200,7 +203,7 @@ int main(int argc, char **argv) {
     // initiate an instance of prefs to store the user preference
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(1280, 800);
+    glutInitWindowSize(1280, 720);
     glutInitWindowPosition(100, 100);
     window = glutCreateWindow("CSCI 6555 project 2 : Articulated Figure");
     glutReshapeFunc(reshape);
@@ -211,18 +214,20 @@ int main(int argc, char **argv) {
     glutMouseFunc(UserInputManager::mouseFunc);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // load obj files and create Part instances
-    GLuint torsoObjID = SimpleObjLoader::loadObj(TORSO_OBJ_NAME, 1);
+    GLuint torsoObjID = SimpleObjLoader::loadObj(TORSO_OBJ_NAME, 1, 1.0);
     parts[0] = new Part(1, torsoObjID, (GLfloat *) NO_VECTOR3, (GLfloat *) NO_VECTOR3, nullptr);
-    GLuint thighObjID = SimpleObjLoader::loadObj(THIGH_OBJ_NAME, 2);
+    GLuint thighObjID = SimpleObjLoader::loadObj(THIGH_OBJ_NAME, 2, 1.0);
     parts[1] = new Part(2, thighObjID, (GLfloat *) THIGHS_TRANSLTE_1, (GLfloat *) LEFT_TIHGH_TRANSLTE_2,parts[0]);
     parts[2] = new Part(3, thighObjID, (GLfloat *) THIGHS_TRANSLTE_1, (GLfloat *) RIGHT_TIHGH_TRANSLTE_2,parts[0]);
-    GLuint calfObjID = SimpleObjLoader::loadObj(CALF_OBJ_NAME, 3);
+    GLuint calfObjID = SimpleObjLoader::loadObj(CALF_OBJ_NAME, 3, 1.0);
     parts[3] = new Part(4, calfObjID, (GLfloat *) CALFS_TRANSLTE_1, (GLfloat *) LEFT_CALF_TRANSLTE_2, parts[1]);
     parts[4] = new Part(5, calfObjID, (GLfloat *) CALFS_TRANSLTE_1, (GLfloat *) RIGHT_CALF_TRANSLTE_2, parts[2]);
-    GLuint footObjID = SimpleObjLoader::loadObj(FOOT_OBJ_NAME, 4);
+    GLuint footObjID = SimpleObjLoader::loadObj(FOOT_OBJ_NAME, 4, 1.0);
     parts[5] = new Part(6, footObjID, (GLfloat *) FEET_TRANSLTE_1, (GLfloat *) LEFT_FOOT_TRANSLTE_2, parts[3]);
     parts[6] = new Part(7, footObjID, (GLfloat *) FEET_TRANSLTE_1, (GLfloat *) RIGHT_FOOT_TRANSLTE_2, parts[4]);
 
+    GLuint headObjID = SimpleObjLoader::loadObj(HEAD_OBJ_NAME, 5, 1.0);
+    parts[7] = new Part(8, headObjID, (GLfloat *) HEAD_TRANSLTE, (GLfloat *) NO_VECTOR3, parts[0]);
     // Create the menu structure and attach it to the right mouse button
     UserInputManager::createMouseMenu();
     glutMainLoop();
