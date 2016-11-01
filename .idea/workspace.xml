@@ -15,14 +15,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4041625e-e32e-407b-8c5d-3aafbe9cd215" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/head.obj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/fist.obj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/forearm.obj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/neck.obj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/upper_arm.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/circle.txt" afterPath="$PROJECT_DIR$/data/circle.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/torso.obj" afterPath="$PROJECT_DIR$/data/torso.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" afterPath="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setup/SimpleObjLoader.cpp" afterPath="$PROJECT_DIR$/src/setup/SimpleObjLoader.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setup/SimpleObjLoader.h" afterPath="$PROJECT_DIR$/src/setup/SimpleObjLoader.h" />
     </list>
     <ignored path="Animations.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +47,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2520">
-              <caret line="214" column="55" selection-start-line="214" selection-start-column="55" selection-end-line="214" selection-end-column="55" />
+            <state relative-caret-position="240">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding>
                 <element signature="e#224#244#0" expanded="true" />
               </folding>
@@ -56,31 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserInputManager.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Part.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/articulation/Part.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+            <state relative-caret-position="462">
+              <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -119,7 +99,7 @@
       <file leaf-file-name="new_circle.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/new_circle.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
+            <state relative-caret-position="810">
               <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
@@ -129,12 +109,9 @@
       <file leaf-file-name="ForwardKinematics.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-259">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding>
-                <marker date="1477943702000" expanded="true" signature="444:1333" ph="{...}" />
-                <marker date="1477943702000" expanded="true" signature="1392:1537" ph="{...}" />
-              </folding>
+            <state relative-caret-position="292">
+              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,11 +148,11 @@
         <option value="$PROJECT_DIR$/src/articulation/ForwardKinematics.h" />
         <option value="$PROJECT_DIR$/data/control_points/circle.txt" />
         <option value="$PROJECT_DIR$/data/new_circle.txt" />
-        <option value="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" />
         <option value="$PROJECT_DIR$/data/circle.txt" />
         <option value="$PROJECT_DIR$/src/setup/SimpleObjLoader.h" />
         <option value="$PROJECT_DIR$/src/setup/SimpleObjLoader.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
@@ -563,7 +540,8 @@
       <workItem from="1477506407343" duration="434000" />
       <workItem from="1477560214983" duration="24000" />
       <workItem from="1477560262145" duration="21283000" />
-      <workItem from="1477934572731" duration="14367000" />
+      <workItem from="1477934572731" duration="14397000" />
+      <workItem from="1477978272957" duration="6791000" />
     </task>
     <task id="LOCAL-00001" summary="RotationHelper::rightDotProduct done">
       <created>1476509705914</created>
@@ -621,11 +599,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477943549977</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="torso added">
+      <created>1477953898370</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1477953898370</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114653000" />
+    <option name="totallyTimeSpent" value="121474000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,18 +664,19 @@
     <MESSAGE value="pace adjusted" />
     <MESSAGE value="feet added" />
     <MESSAGE value="before pace change" />
-    <option name="LAST_COMMIT_MESSAGE" value="before pace change" />
+    <MESSAGE value="torso added" />
+    <option name="LAST_COMMIT_MESSAGE" value="torso added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/main.cpp</url>
-          <line>229</line>
-          <option name="timeStamp" value="52" />
+          <url>file://$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp</url>
+          <line>36</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -992,21 +978,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/articulation/Part.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/new_circle.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
+        <state relative-caret-position="810">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
@@ -1020,22 +997,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-259">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <marker date="1477943702000" expanded="true" signature="444:1333" ph="{...}" />
-            <marker date="1477943702000" expanded="true" signature="1392:1537" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/control_points/circle.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="72" selection-start-line="36" selection-start-column="72" selection-end-line="36" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,7 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1051,6 +1015,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulation/Part.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1081,16 +1053,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        <state relative-caret-position="462">
+          <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="214" column="55" selection-start-line="214" selection-start-column="55" selection-end-line="214" selection-end-column="55" />
+        <state relative-caret-position="240">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
             <element signature="e#224#244#0" expanded="true" />
           </folding>

@@ -14,7 +14,7 @@ GLfloat deltaRightAngleThigh[4] = {-0.5,-0.5,0.5,0.5};
 GLfloat deltaAngleLeftCalf[4] = {-1,1,0,0};
 GLfloat deltaAngleRightCalf[4] = {0,0,-1,1};
 int phase = 0;
-GLfloat xAngles[5] ={0,-30,30,0,0};
+GLfloat xAngles[15] ={0,-30,30,0,0,0,0,0,0,0,0,0,0,0,0};
 void ForwardKinematics::setLocalRotation(Part **parts, bool isKeyFraming) {
     int i;
     if (phase == 0 && xAngles[1] >= 0) {
@@ -31,9 +31,7 @@ void ForwardKinematics::setLocalRotation(Part **parts, bool isKeyFraming) {
     xAngles[3] += deltaAngleLeftCalf[phase];
     xAngles[4] += deltaAngleRightCalf[phase];
 
-
-
-    for (i = 0; i < 5; i++){
+    for (i = 0; i < 15; i++){
         if (i ==0 ) {
             if(isKeyFraming) {
                 continue;

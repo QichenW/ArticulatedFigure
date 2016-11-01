@@ -41,7 +41,7 @@ target_link_libraries(Animations ${EXTRA_LIBS} nativefiledialog)
 if (NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
 
     # list of files for which we add a copy rule
-    set(object_files head.obj torso.obj thigh.obj calf.obj foot.obj teddy.obj)
+    set(object_files head.obj torso.obj thigh.obj calf.obj foot.obj neck.obj upper_arm.obj forearm.obj fist.obj)
 
     foreach(item IN LISTS object_files)
         message(STATUS ${item})
@@ -59,6 +59,9 @@ add_custom_target(obj ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/head.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/thigh.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/calf.obj"
         "${CMAKE_CURRENT_BINARY_DIR}/foot.obj"
-        "${CMAKE_CURRENT_BINARY_DIR}/teddy.obj")
+        "${CMAKE_CURRENT_BINARY_DIR}/neck.obj"
+        "${CMAKE_CURRENT_BINARY_DIR}/upper_arm.obj"
+        "${CMAKE_CURRENT_BINARY_DIR}/forearm.obj"
+        "${CMAKE_CURRENT_BINARY_DIR}/fist.obj")
 # add the dependency project to the project target
 ADD_DEPENDENCIES(Animations obj)
