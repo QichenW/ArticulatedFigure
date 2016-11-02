@@ -4,64 +4,23 @@
 //  Copyright © 2016 Qichen Wang. All rights reserved.
 //
 
-#include <GL/glew.h>
 #include <RotationHelper.h>
 #include <UserInputManager.h>
-#include <SimpleObjLoader.h>
 #include <StringUtils.h>
 #include <matrix/InterpolationHelper.h>
 #include <articulation/Part.h>
 #include <articulation/ForwardKinematics.h>
+#include <articulation/DrawLinks.h>
 
 using namespace std;
-
-static const GLfloat NO_VECTOR3[3] ={0,0,0};
-static const GLfloat NECK_TRANSLATE_1[3] ={0,1.5,0};
-static const GLfloat NECK_TRANSLATE_2[3] ={0,6.5,0};
-
-static const GLfloat HEAD_TRANSLATE[3] ={0,4,0};
-
-static const GLfloat UPPER_ARM_TRANSLATE_1[3] ={0,4.25,0};
-static const GLfloat LEFT_UPPER_ARM_TRANSLATE_2[3] ={-4.75,-2,0};
-static const GLfloat RIGHT_UPPER_ARM_TRANSLATE_2[3] ={4.75,-2,0};
-
-static const GLfloat FOREARM_TRANSLATE_1[3] ={0,-4,0};
-static const GLfloat FOREARM_TRANSLATE_2[3] ={0,-4,0};
-
-static const GLfloat FIST_TRANSLATE_1[3] ={0,-0.75,0};
-static const GLfloat FIST_TRANSLATE_2[3] ={0,-2.8,-0.3};
-
-static const GLfloat THIGH_TRANSLATE_1[3] ={0,-4.5,0};
-static const GLfloat LEFT_THIGH_TRANSLATE_2[3] ={-2,-6,0};
-static const GLfloat RIGHT_THIGH_TRANSLATE_2[3] ={2,-6,0};
-
-static const GLfloat CALF_TRANSLATE_1[3] ={0,-4.25,0};
-static const GLfloat CALF_TRANSLATE_2[3] ={0,-4.25,0};
-
-static const GLfloat FOOT_TRANSLATE_1[3] ={0,-4.5,0};
-static const GLfloat FOOT_TRANSLATE_2[3] ={0,-0.2,-1};
 
 Part *parts[15];
 Preferences prefs;
 int curveSegmentAmount, currentSegment;
-GLfloat increment = 0.008, angleInterval = 6;
-GLfloat rotationTorso[3] = {0,0,0}, rotationLeftThigh[3] = {}, rotationRightThigh[3]={};
-GLfloat translationTorso[3] = {0,0,-15}, translationLeftThigh[3] = {}, translationRightThigh[3]={};
-GLfloat rotationLeftCalf[3] = {}, rotationRightCalf[3]={};
-GLfloat translationLeftCalf[3] = {}, translationRightCalf[3]={};
+GLfloat increment = 0.008;
 
 GLfloat tVector[4]={}, quaternion[4] = {}, eulerAngle[3] = {}, translation[3] = {};
 int window;
-
-static char* CALF_OBJ_NAME = (char *) "calf.obj";
-static char* THIGH_OBJ_NAME = (char *) "thigh.obj";
-static char* TORSO_OBJ_NAME = (char *) "torso.obj";
-static char* NECK_OBJ_NAME = (char *) "neck.obj";
-static char* UPPER_ARM_OBJ_NAME = (char *) "upper_arm.obj";
-static char* FIST_OBJ_NAME = (char *) "fist.obj";
-static char* HEAD_OBJ_NAME = (char *) "head.obj";
-static char *FOOT_OBJ_NAME = (char *) "foot.obj";
-static char *FOREARM_OBJ_NAME = (char *) "forearm.obj";
 
 void drawFrame();
 
@@ -117,6 +76,7 @@ void drawLinks(bool isKeyFraming) {
             //first, move w.r.t parent to align axis
             RotationHelper::rightDotProduct(combinedTransformation, parts[i]->firstAlignFlatMatrix);
             parts[i]->setCombinedTransitions(combinedTransformation);
+
         } else {
             if (!isKeyFraming) {
                 combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
@@ -227,37 +187,10 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(UserInputManager::keyboardFunc);
     glutMouseFunc(UserInputManager::mouseFunc);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // load obj files and create Part instances
-    GLuint torsoObjID = SimpleObjLoader::loadObj(TORSO_OBJ_NAME, 1, 1.0);
-    parts[0] = new Part(1, torsoObjID, (GLfloat *) NO_VECTOR3, (GLfloat *) NO_VECTOR3, nullptr);
-    GLuint thighObjID = SimpleObjLoader::loadObj(THIGH_OBJ_NAME, 2, 1.0);
-    parts[1] = new Part(2, thighObjID, (GLfloat *) THIGH_TRANSLATE_1, (GLfloat *) LEFT_THIGH_TRANSLATE_2,parts[0]);
-    parts[2] = new Part(3, thighObjID, (GLfloat *) THIGH_TRANSLATE_1, (GLfloat *) RIGHT_THIGH_TRANSLATE_2,parts[0]);
-    GLuint calfObjID = SimpleObjLoader::loadObj(CALF_OBJ_NAME, 3, 1.0);
-    parts[3] = new Part(4, calfObjID, (GLfloat *) CALF_TRANSLATE_1, (GLfloat *) CALF_TRANSLATE_2, parts[1]);
-    parts[4] = new Part(5, calfObjID, (GLfloat *) CALF_TRANSLATE_1, (GLfloat *) CALF_TRANSLATE_2, parts[2]);
-    GLuint footObjID = SimpleObjLoader::loadObj(FOOT_OBJ_NAME, 4, 1.0);
-    parts[5] = new Part(6, footObjID, (GLfloat *) FOOT_TRANSLATE_1, (GLfloat *) FOOT_TRANSLATE_2, parts[3]);
-    parts[6] = new Part(7, footObjID, (GLfloat *) FOOT_TRANSLATE_1, (GLfloat *) FOOT_TRANSLATE_2, parts[4]);
 
-    GLuint neckObjID = SimpleObjLoader::loadObj(NECK_OBJ_NAME, 5, 1.0);
-    parts[7] = new Part(8, neckObjID, (GLfloat *) NECK_TRANSLATE_1, (GLfloat *) NECK_TRANSLATE_2, parts[0]);
+    //load the obj files of parts, and create the drawing list
+    DrawLinks::drawLinks(parts);
 
-    GLuint headObjID = SimpleObjLoader::loadObj(HEAD_OBJ_NAME, 5, 1.0);
-    parts[8] = new Part(9, headObjID, (GLfloat *) HEAD_TRANSLATE, (GLfloat *) NO_VECTOR3, parts[7]);
-
-    GLuint upperArmObjID = SimpleObjLoader::loadObj(UPPER_ARM_OBJ_NAME, 5, 1.0);
-    parts[9] = new Part(10, upperArmObjID, (GLfloat *) UPPER_ARM_TRANSLATE_1, (GLfloat *) LEFT_UPPER_ARM_TRANSLATE_2, parts[0]);
-    parts[10] = new Part(11, upperArmObjID, (GLfloat *) UPPER_ARM_TRANSLATE_1, (GLfloat *) RIGHT_UPPER_ARM_TRANSLATE_2, parts[0]);
-
-    GLuint foreArmObjID = SimpleObjLoader::loadObj(FOREARM_OBJ_NAME, 5, 1.0);
-    parts[11] = new Part(12, foreArmObjID, (GLfloat *) FOREARM_TRANSLATE_1, (GLfloat *) FOREARM_TRANSLATE_2, parts[9]);
-    parts[12] = new Part(13, foreArmObjID, (GLfloat *) FOREARM_TRANSLATE_1, (GLfloat *) FOREARM_TRANSLATE_2, parts[10]);
-
-    GLuint fistObjID = SimpleObjLoader::loadObj(FIST_OBJ_NAME, 5, 1.0);
-    parts[13] = new Part(14, fistObjID, (GLfloat *) FIST_TRANSLATE_1, (GLfloat *) FIST_TRANSLATE_2, parts[11]);
-    parts[14] = new Part(15, fistObjID, (GLfloat *) FIST_TRANSLATE_1, (GLfloat *) FIST_TRANSLATE_2, parts[12]);
-    // Create the menu structure and attach it to the right mouse button
     UserInputManager::createMouseMenu();
     glutMainLoop();
     return 0;

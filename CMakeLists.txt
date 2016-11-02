@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES src/main.cpp src/setup/SimpleObjLoader.cpp src/setup/SimpleObjLoader.h src/matrix/RotationHelper.cpp
         src/matrix/RotationHelper.h src/ui/UserInputManager.cpp src/ui/UserInputManager.h
-        src/ui/StringUtils.cpp src/ui/StringUtils.h src/setup/Preferences.cpp src/setup/Preferences.h src/setup/SetupFileLoader.cpp src/setup/SetupFileLoader.h src/matrix/InterpolationHelper.cpp src/matrix/InterpolationHelper.h src/matrix/QuaternionConverter.cpp src/matrix/QuaternionConverter.h src/articulation/Part.cpp src/articulation/Part.h src/articulation/ForwardKinematics.cpp src/articulation/ForwardKinematics.h src/matrix/CoefficientMatrices.cpp src/matrix/CoefficientMatrices.h)
+        src/ui/StringUtils.cpp src/ui/StringUtils.h src/setup/Preferences.cpp src/setup/Preferences.h src/setup/SetupFileLoader.cpp src/setup/SetupFileLoader.h src/matrix/InterpolationHelper.cpp src/matrix/InterpolationHelper.h src/matrix/QuaternionConverter.cpp src/matrix/QuaternionConverter.h src/articulation/Part.cpp src/articulation/Part.h src/articulation/ForwardKinematics.cpp src/articulation/ForwardKinematics.h src/matrix/CoefficientMatrices.cpp src/matrix/CoefficientMatrices.h src/articulation/DrawLinks.cpp src/articulation/DrawLinks.h)
 
 #########################################################
 # Include Files

@@ -3,6 +3,14 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/SetupFileLoader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/Preferences.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/SetupFileLoader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/SimpleObjLoader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/Preferences.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/articulation/DrawLinks.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/articulation/DrawLinks.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/setup/SimpleObjLoader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/InterpolationHelper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/CoefficientMatrices.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/InterpolationHelper.cpp" isTestSource="false" />
@@ -11,12 +19,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/CoefficientMatrices.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/RotationHelper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/matrix/QuaternionConverter.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/SetupFileLoader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/Preferences.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/SetupFileLoader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/SimpleObjLoader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/Preferences.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/setup/SimpleObjLoader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ui/UserInputManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ui/UserInputManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ui/StringUtils.h" isTestSource="false" />
