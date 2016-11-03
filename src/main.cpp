@@ -111,13 +111,15 @@ void drawFrame() {
         InterpolationHelper::prepareTimeVector(tVector, prefs.getTimeProgress());
         prefs.timeProceed(increment);
     } else if (currentSegment <= curveSegmentAmount) {
+        //if reach the end of current curve
         prefs.currentCoefficientMatrices->printCurrentCoefficientMatrices();
         if (currentSegment == curveSegmentAmount) {
+            // if current curve is the last segment in trajectory, end the animation then return
             glPopMatrix();
             prefs.setIsPlaying(false);
             return;
         }
-        //TODO figure out what causes the minor pause
+        // if current cure is not the last segment in trajectory, shift to next curve then return
         currentSegment++;
         prefs.resetTimeProgress();
         prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
@@ -128,13 +130,16 @@ void drawFrame() {
         return;
     }
 
-    // prepare the translation vector
+    /** the interpolation for rotation of links other that torso is NOT written here,
+     * it is written in class ForwardKinematics **/
+
+    // prepare the translation vector for torso
     InterpolationHelper::
     prepareTranslationOrEulerAngleVector(translation, tVector, prefs.currentCoefficientMatrices->translation);
 
     if (prefs.getOrientationMode() == 0) {
         // if getting euler angle version of animation
-        // prepare the euler angle vector
+        // prepare the euler angle vector for torso
         InterpolationHelper::
         prepareTranslationOrEulerAngleVector(eulerAngle, tVector, prefs.currentCoefficientMatrices->eRotation);
         // move the figure
@@ -143,7 +148,8 @@ void drawFrame() {
         // if getting quaternion version of animation
         // prepare the quaternion vector
         InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.currentCoefficientMatrices->qRotation);
-        // move and rotate the object1
+
+        // move and rotate the torso; rotate other links
         ForwardKinematics::setLocalRotation(parts, true);
         drawLinks(true);
     }

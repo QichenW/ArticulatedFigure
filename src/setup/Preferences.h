@@ -8,7 +8,6 @@
 #if defined(__APPLE__)
 #include <GLUT/glut.h>
 #include <string>
-#include <vector>
 #include <matrix/CoefficientMatrices.h>
 
 #else

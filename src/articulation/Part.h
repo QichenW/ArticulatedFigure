@@ -7,7 +7,6 @@
 #if defined(__APPLE__)
 #include <GLUT/glut.h>
 #include <string>
-#include <vector>
 
 #else
 #include <GL/glut.h>

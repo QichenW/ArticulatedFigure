@@ -58,7 +58,7 @@ void InterpolationHelper::calculate3dCoefficientMatrix(GLfloat (*dest)[3], int i
 
 }
 
-//TODO test this
+
 /****
  *  Calculate the coefficient matrix for quaternions interpolation
  * @param dest where the coeeficient matrix is stored
@@ -149,4 +149,59 @@ InterpolationHelper::prepareQuaternionVector(GLfloat *quaternion, GLfloat *tVect
     }
     //For debug only
     //cout<< "the magnitude after is " <<QuaternionConverter::getMagnitudeOfQuaternion(quaternion)<< endl;
+}
+
+
+/****
+ *  Calculate the coefficient matrix for cubic spline interpolation of 8 dimentions
+ *  for articulated figures (2 upper-arms, 2 forarms, 2 thighs, 2 calfs each of them has 1 dof)
+ * @param dest where the coeeficient matrix is stored
+ * @param interpolationMode suggest either catmull-rom or b-spline
+ * @param quaternionList
+ */
+void InterpolationHelper::calculate8dCoefficientMatrix(
+        GLfloat (*dest)[8], int interpolationMode, GLfloat controlPointList[4][8]) {
+    int i,j,k;
+    for (i = 0; i < NUMBER_OF_CONTROL_POINTS; i++){
+        for (j = 0; j < 8; j++){
+            dest[i][j] = 0;
+            for (k = 0;  k< NUMBER_OF_CONTROL_POINTS; k++){
+                if (interpolationMode == 0) {
+                    //use catmull-rom for interpolation
+                    dest[i][j] += basisCatmullMatrix[i][k] * controlPointList[k][j];
+                } else {
+                    // use b-spline
+                    dest[i][j] += basisBsplineMatrix[i][k] * controlPointList[k][j];
+                }
+            }
+        }
+    }
+
+    //TODO for debug only
+    cout<< "the coefficient matrix is:"<< endl;
+    for (i = 0; i < NUMBER_OF_CONTROL_POINTS; i++) {
+        for (j = 0; j< 8; j++) {
+
+            cout<< dest[i][j] << '\t';
+        }
+        cout<< '\n';
+    }
+}
+
+
+/****
+ * calculate the 8-d vector for current time given the coefficient matrix for cubic spline of the articulated figure
+ * @param vector8 the address of the vector to store translation vector
+ * @param tVector the time vector
+ * @param coefficientMatrix the coefficient matrix [4][8]
+ */
+void InterpolationHelper::prepare8dVector(GLfloat *vector8, GLfloat *tVector,
+                                                               GLfloat coefficientMatrix[4][8]) {
+    int i,j;
+    for(i = 0; i < 8; i++) {
+        *(vector8 + i) = 0;
+        for (j = 0; j < NUMBER_OF_CONTROL_POINTS; j++) {
+            *(vector8 + i) += *(tVector + j) * (*(coefficientMatrix + j))[i];
+        }
+    }
 }
