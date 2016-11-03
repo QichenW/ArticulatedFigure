@@ -79,3 +79,46 @@ void DrawLinks::prepareLinks(Part **links) {
     // Create the menu structure and attach it to the right mouse button
 
 }
+
+
+/***
+ * generate the transformation matrices for every link (torso, tighs, calfs) w.r.t. world space, then draw them
+ * As taught in the lecture, the transformation for a non-root link is the product of 4 matrices.
+ */
+void DrawLinks::drawLinks(Part **parts, GLfloat * rootQuat, GLfloat * rootTrans, bool isKeyFraming) {
+    int i;
+    GLfloat * combinedTransformation;
+    for (i = 0; i < 15; i++) {
+        combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
+        glPushMatrix();
+
+        if (parts[i]->parent != nullptr) {
+            //finally, go with parent
+            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->parent->combinedTransformation);
+            //third, move the part to the appropriate position w.r.t parent
+            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->secondAlignFlatMatrix);
+            //second, local rotate
+            RotationHelper::rightDotProduct(combinedTransformation,
+                                            RotationHelper::generateFlattenedTransformationMatrix(
+                                                    parts[i]->localRotation, nullptr, false));
+            //first, move w.r.t parent to align axis
+            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->firstAlignFlatMatrix);
+            parts[i]->setCombinedTransitions(combinedTransformation);
+
+        } else {
+            if (!isKeyFraming) {
+                combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
+                        parts[i]->localRotation, parts[i]->localTranslation, false);
+                parts[i]->setCombinedTransitions(combinedTransformation);
+            } else{
+                combinedTransformation = RotationHelper::
+                generateFlattenedTransformationMatrix(rootQuat, rootTrans, true);
+                parts[i]->setCombinedTransitions(combinedTransformation);
+            }
+
+        }
+        glMultMatrixf(combinedTransformation);
+        glCallList(parts[i]->objListID);
+        glPopMatrix();
+    }
+}

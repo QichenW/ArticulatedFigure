@@ -15,17 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4041625e-e32e-407b-8c5d-3aafbe9cd215" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/articulation/ForwardKinematics.h" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/DrawLinks.cpp" afterPath="$PROJECT_DIR$/src/articulated/DrawLinks.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/DrawLinks.h" afterPath="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/Kinematics.cpp" afterPath="$PROJECT_DIR$/src/articulated/Kinematics.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/Kinematics.h" afterPath="$PROJECT_DIR$/src/articulated/Kinematics.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/Part.cpp" afterPath="$PROJECT_DIR$/src/articulated/Part.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/articulation/Part.h" afterPath="$PROJECT_DIR$/src/articulated/Part.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Animations.iml" afterPath="$PROJECT_DIR$/.idea/Animations.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulated/DrawLinks.cpp" afterPath="$PROJECT_DIR$/src/articulated/DrawLinks.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulated/DrawLinks.h" afterPath="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
     </list>
     <ignored path="Animations.iws" />
@@ -51,8 +43,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+            <state relative-caret-position="506">
+              <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
               <folding>
                 <element signature="e#224#251#0" expanded="true" />
               </folding>
@@ -63,8 +55,8 @@
       <file leaf-file-name="DrawLinks.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="523">
+              <caret line="113" column="38" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -83,9 +75,11 @@
       <file leaf-file-name="DrawLinks.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="390">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#103#131#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,8 +87,8 @@
       <file leaf-file-name="Kinematics.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="73" selection-start-line="27" selection-start-column="73" selection-end-line="27" selection-end-column="73" />
+            <state relative-caret-position="90">
+              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
@@ -189,6 +183,7 @@
         <option value="$PROJECT_DIR$/src/articulation/Kinematics.h" />
         <option value="$PROJECT_DIR$/src/ui/StringUtils.cpp" />
         <option value="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
+        <option value="$PROJECT_DIR$/src/articulated/DrawLinks.cpp" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
@@ -512,7 +507,7 @@
       <workItem from="1477978272957" duration="6892000" />
       <workItem from="1478084104344" duration="40361000" />
       <workItem from="1478152756404" duration="6163000" />
-      <workItem from="1478188636022" duration="950000" />
+      <workItem from="1478188636022" duration="2420000" />
     </task>
     <task id="LOCAL-00001" summary="RotationHelper::rightDotProduct done">
       <created>1476509705914</created>
@@ -626,11 +621,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478158681811</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="format tweaked">
+      <created>1478189762428</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1478189762428</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169049000" />
+    <option name="totallyTimeSpent" value="170519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -650,6 +652,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43942732" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24966079" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -661,7 +664,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -692,7 +694,8 @@
     <MESSAGE value="now looks better" />
     <MESSAGE value="now have 10 dofs" />
     <MESSAGE value="final" />
-    <option name="LAST_COMMIT_MESSAGE" value="final" />
+    <MESSAGE value="format tweaked" />
+    <option name="LAST_COMMIT_MESSAGE" value="format tweaked" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -951,6 +954,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="142" column="70" selection-start-line="142" selection-start-column="70" selection-end-line="142" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -958,6 +962,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-379">
           <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="e#144#166#0" expanded="false" />
+            <element signature="e#232#252#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,16 +1023,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="73" selection-start-line="27" selection-start-column="73" selection-end-line="27" selection-end-column="73" />
-          <folding>
-            <element signature="e#41#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1059,26 +1057,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.cpp">
+    <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="90">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="e#41#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#103#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="113" column="38" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+        <state relative-caret-position="506">
+          <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
           <folding>
             <element signature="e#224#251#0" expanded="true" />
           </folding>

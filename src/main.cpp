@@ -24,9 +24,6 @@ int window;
 
 void drawFrame();
 
-
-void drawLinks(bool);
-
 void reshape(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
@@ -51,48 +48,12 @@ void displayObject() {
     Kinematics::setLocalTranslation(parts[0]);
     Kinematics::setLocalRotation(parts, false);
 
-    drawLinks(false);
+    DrawLinks::drawLinks(parts, quaternion, translation, false);
 }
 
-/***
- * generate the transformation matrices for every link (torso, tighs, calfs) w.r.t. world space, then draw them
- */
-void drawLinks(bool isKeyFraming) {
-    int i;
-    GLfloat * combinedTransformation;
-    for (i = 0; i < 15; i++) {
-        combinedTransformation = (GLfloat [16]){1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
-        glPushMatrix();
 
-        if (parts[i]->parent != nullptr) {
-            //finally, go with parent
-            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->parent->combinedTransformation);
-            //third, move the part to the appropriate position w.r.t parent
-            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->secondAlignFlatMatrix);
-            //second, local rotate
-            RotationHelper::rightDotProduct(combinedTransformation,
-                                            RotationHelper::generateFlattenedTransformationMatrix(
-                                                    parts[i]->localRotation, nullptr, false));
-            //first, move w.r.t parent to align axis
-            RotationHelper::rightDotProduct(combinedTransformation, parts[i]->firstAlignFlatMatrix);
-            parts[i]->setCombinedTransitions(combinedTransformation);
+void drawLiks(bool isKeyFraming) {
 
-        } else {
-            if (!isKeyFraming) {
-                combinedTransformation = RotationHelper::generateFlattenedTransformationMatrix(
-                        parts[i]->localRotation, parts[i]->localTranslation, false);
-                parts[i]->setCombinedTransitions(combinedTransformation);
-            } else{
-                combinedTransformation = RotationHelper::
-                generateFlattenedTransformationMatrix(quaternion, translation, true);
-                parts[i]->setCombinedTransitions(combinedTransformation);
-            }
-
-        }
-        glMultMatrixf(combinedTransformation);
-        glCallList(parts[i]->objListID);
-        glPopMatrix();
-    }
 }
 
 /****
@@ -106,6 +67,9 @@ void drawFrame() {
     glColor3f(0.1, 0.45, 0.1);
 
     // prepare the T vector for current time, then increment time.
+    // if reach the end of one curve segment, point to next segment/ if end of whole trajectory, stop the animation
+    // then return
+
     if(prefs.getTimeProgress()< 1.0){
         InterpolationHelper::prepareTimeVector(tVector, prefs.getTimeProgress());
         prefs.timeProceed(increment);
@@ -124,7 +88,7 @@ void drawFrame() {
         prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
         // move and rotate the figure
         Kinematics::setLocalRotation(parts, true);
-        drawLinks(true);
+        DrawLinks::drawLinks(parts, quaternion, translation, true);
         glPopMatrix();
         return;
     }
@@ -150,7 +114,7 @@ void drawFrame() {
 
         // move and rotate the torso; rotate other links
         Kinematics::setLocalRotation(parts, true);
-        drawLinks(true);
+        DrawLinks::drawLinks(parts, quaternion, translation, true);
     }
     glPopMatrix();
 }
@@ -164,8 +128,9 @@ void display(void) {
     UserInterfaceManager::renderStatusMessage(
             prefs.getOrientationMode(), prefs.getInterpolationMode(), prefs.getIsPlaying());
     if(!prefs.getIsPlaying()){
+        // if there is no user input, show an walking in straight line animation
         displayObject();
-        //TODO the following two line is bad practice
+        //TODO the following two line is bad practice fix it later
         currentSegment = 1;
         prefs.currentCoefficientMatrices = prefs.pCoefficientMatrices;
     } else {
@@ -175,8 +140,9 @@ void display(void) {
     glutSwapBuffers(); //swap the buffers
 
 }
+
 /**
- * openGL works in a right-handed coordinate system by default
+ *  Note that openGL works in a right-handed coordinate system by default
  * **/
 int main(int argc, char **argv) {
 
