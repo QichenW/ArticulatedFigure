@@ -7,7 +7,7 @@
 #include "StringUtils.h"
 
 static const char * strReqestMouseInput ="Right click and load a setup (.txt) file";
-static const char *strFileLoaded =" approach loaded, start animation or reset";
+static const char *strFileLoaded =" loaded, start animation or reset";
 static const char *strCatmull ="Catmull-Rom";
 static const char *strBspline ="B-Spline";
 static const char *strEuler ="Euler Angle & ";
