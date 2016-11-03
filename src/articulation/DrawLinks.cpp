@@ -38,8 +38,8 @@ static const GLfloat RIGHT_THIGH_TRANSLATE_2[3] ={2,-6,0};
 static const GLfloat CALF_TRANSLATE_1[3] ={0,-4.25,0};
 static const GLfloat CALF_TRANSLATE_2[3] ={0,-4.25,0};
 
-static const GLfloat FOOT_TRANSLATE_1[3] ={0,-4.5,0};
-static const GLfloat FOOT_TRANSLATE_2[3] ={0,-0.2,-1};
+static const GLfloat FOOT_TRANSLATE_1[3] ={0,-0.2,-1};
+static const GLfloat FOOT_TRANSLATE_2[3] ={0,-4.5,0};
 
 void DrawLinks::drawLinks(Part **links) {
     // load obj files and create Part instances

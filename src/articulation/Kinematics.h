@@ -29,7 +29,7 @@ private:
     static GLfloat cubicTimeVector[4];
 
     // t parameter for interpolation and its incremental interval
-    static constexpr float deltaT =  0.1; //TODO write the reasoning for this
+    static constexpr float deltaT =  0.1196; //TODO write the reasoning for this
     static GLfloat tInSegment;
 
     // identifier of current curve for curve concatenation
@@ -65,7 +65,7 @@ private:
     float static constexpr controlPoints_r_c[20] =   {-5.73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                             0, -5.73, -20.73, -39.27, -54.27,
                                             -60.00, -54.27, -39.27, -20.73};
-    //TODO arms control points
+
     // left upper arm's rotation
     float static constexpr controlPoints_l_u[20] = {   28.53, 30.00, 28.53, 24.27, 17.63, 9.27, 0.00,
                                                        -9.27, -17.63, -24.27, -28.53, -30.00, -28.53, -24.27,
@@ -80,16 +80,12 @@ private:
     // right forearm's rotation
     float static constexpr controlPoints_r_fore[20] = { 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635, 37.135, 40,
                                                      37.135, 29.635, 20.365, 12.865, 10, 10, 10, 10};
-    // left foot's rotation
-    float static constexpr controlPoints_l_foot[20] = {};
-    // right foot's rotation
-    float static constexpr controlPoints_r_foot[20] = {};
 //    // left foot's rotation
-//    float static constexpr controlPoints_l_foot[20] = { 37.135, 40.0, 37.135, 29.635, 20.365, 12.865, 10, 10, 10,
-//                                                        10, 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635};
-//    // right foot's rotation
-//    float static constexpr controlPoints_r_foot[20] = { 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635, 37.135, 40,
-//                                                        37.135, 29.635, 20.365, 12.865, 10, 10, 10, 10};
+    float static constexpr controlPoints_l_foot[20] = { 19.02, 20, 19.02, 16.18, 11.75, 6.18, 0, -6.18, -11.75, -16.18,
+                                       -19.02, -20.0, -19.02, -16.18, -11.75, -6.18, 0.0, 6.18, 11.75, 16.18};
+    // right foot's rotation
+    float static constexpr controlPoints_r_foot[20] = {-19.02, -20, -19.02, -16.18, -11.75, -6.18, 0,
+                         6.18, 11.75, 16.18, 19.02, 20.0, 19.02, 16.18, 11.753, 6.18, 0, -6.18, -11.753, -16.18};
     static void initiate();
 };
 
