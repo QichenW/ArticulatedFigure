@@ -30,11 +30,11 @@ public:
 
     static void calculate4dCoefficientMatrix(GLfloat dest[4][4], int interpolationMode, GLfloat quaternionList[4][4]);
 
-    static void calculate8dCoefficientMatrix(
-            GLfloat (*dest)[8], int interpolationMode, GLfloat controlPointList[4][8]);
+    static void calculate10dCoefficientMatrix(
+            GLfloat (*dest)[10], int interpolationMode, GLfloat (*controlPointList)[10]);
 
-    static void prepare8dVector(GLfloat *vector8, GLfloat *tVector,
-                                                     GLfloat coefficientMatrix[4][8]);
+    static void prepare10dVector(GLfloat *dest, GLfloat *tVector,
+                                 GLfloat coefficientMatrix[4][10]);
 };
 
 

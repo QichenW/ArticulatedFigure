@@ -19,13 +19,13 @@ public:
     static void calculateAllCoefficientMatrices();
 
 private:
-    const static int NUMBER_OF_CONTROL_POINT_FOR_CUBIC_SPLINE = 4;
+    const static int NUMBER_OF_CONTROL_POINT_FOR_CUBIC = 4;
     const static int NUMBER_OF_SEGMENT = 20;
-    const static int NUMBER_OF_DOF_FOR_NON_TORSO = 8;
+    const static int NUMBER_OF_DOF_FOR_NON_TORSO = 10;
     const static int TOTAL_NUMBER_OF_LINKS = 15; // including torso and non-rotational links
-    static GLfloat geometryMatrices[20][4][8];
-    static GLfloat coefficientMatrices[20][4][8];
-    static GLfloat currentRotation8[8];
+    static GLfloat geometryMatrices[NUMBER_OF_SEGMENT][4][10];
+    static GLfloat coefficientMatrices[NUMBER_OF_SEGMENT][4][10];
+    static GLfloat currentRotations[NUMBER_OF_DOF_FOR_NON_TORSO];
     static GLfloat cubicTimeVector[4];
 
     // t parameter for interpolation and its incremental interval
@@ -37,7 +37,7 @@ private:
 
     // the mapping from parts[15] indices to the 8-d rotation vector, -1 means non-rotational
     static constexpr int LINK_ID_TO_ROTATION_MAPPING[TOTAL_NUMBER_OF_LINKS] = {
-            -1, 0, 1, 2, 3, -1, -1, -1, -1, 4, 5, 6, 7, -1, -1};
+            -1, 0, 1, 2, 3, 8, 9, -1, -1, 4, 5, 6, 7, -1, -1};
 
 
 
@@ -75,12 +75,21 @@ private:
                                                       9.27, 17.63, 24.27, 28.53, 30.00, 28.53, 24.27,
                                                       17.63, 9.27, 0.00, -9.27, -17.63, -24.27};
     // left forearm's rotation
-    float static constexpr controlPoints_l_f[20] = { 37.135, 40.0, 37.135, 29.635, 20.365, 12.865, 10, 10, 10,
+    float static constexpr controlPoints_l_fore[20] = { 37.135, 40.0, 37.135, 29.635, 20.365, 12.865, 10, 10, 10,
                                                      10, 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635};
     // right forearm's rotation
-    float static constexpr controlPoints_r_f[20] = { 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635, 37.135, 40,
+    float static constexpr controlPoints_r_fore[20] = { 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635, 37.135, 40,
                                                      37.135, 29.635, 20.365, 12.865, 10, 10, 10, 10};
-
+    // left foot's rotation
+    float static constexpr controlPoints_l_foot[20] = {};
+    // right foot's rotation
+    float static constexpr controlPoints_r_foot[20] = {};
+//    // left foot's rotation
+//    float static constexpr controlPoints_l_foot[20] = { 37.135, 40.0, 37.135, 29.635, 20.365, 12.865, 10, 10, 10,
+//                                                        10, 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635};
+//    // right foot's rotation
+//    float static constexpr controlPoints_r_foot[20] = { 10, 10, 10, 10, 10, 10, 10, 12.865, 20.365, 29.635, 37.135, 40,
+//                                                        37.135, 29.635, 20.365, 12.865, 10, 10, 10, 10};
     static void initiate();
 };
 

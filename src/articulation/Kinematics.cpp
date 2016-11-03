@@ -11,17 +11,20 @@ GLfloat Kinematics::idleTorsoPos;
 GLfloat Kinematics::idleSpeed;
 int Kinematics::currentSegment;
 GLfloat Kinematics::cubicTimeVector[4];
-GLfloat Kinematics::currentRotation8[8];
-GLfloat Kinematics::geometryMatrices[20][4][8];
-GLfloat Kinematics::coefficientMatrices[20][4][8];
-float const Kinematics::controlPoints_l_c[20];
-float const Kinematics::controlPoints_l_f[20];
-float const Kinematics::controlPoints_l_t[20];
-float const Kinematics::controlPoints_l_u[20];
-float const Kinematics::controlPoints_r_c[20];
-float const Kinematics::controlPoints_r_f[20];
-float const Kinematics::controlPoints_r_t[20];
-float const Kinematics::controlPoints_r_u[20];
+GLfloat Kinematics::currentRotations[NUMBER_OF_DOF_FOR_NON_TORSO];
+GLfloat Kinematics::geometryMatrices[NUMBER_OF_SEGMENT][4][10];
+GLfloat Kinematics::coefficientMatrices[NUMBER_OF_SEGMENT][4][10];
+float const Kinematics::controlPoints_l_c[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_l_fore[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_l_t[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_l_u[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_r_c[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_r_fore[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_r_t[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_r_u[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_l_foot[NUMBER_OF_SEGMENT];
+float const Kinematics::controlPoints_r_foot[NUMBER_OF_SEGMENT];
+
 int const Kinematics::LINK_ID_TO_ROTATION_MAPPING[TOTAL_NUMBER_OF_LINKS];
 
 
@@ -30,7 +33,7 @@ void Kinematics::setLocalRotation(Part **parts, bool isStraightTrajectory) {
     InterpolationHelper::prepareTimeVector(cubicTimeVector, tInSegment);
 
 
-    InterpolationHelper::prepare8dVector(currentRotation8, cubicTimeVector, coefficientMatrices[currentSegment]);
+    InterpolationHelper::prepare10dVector(currentRotations, cubicTimeVector, coefficientMatrices[currentSegment]);
 
 //TODO test it
 
@@ -52,7 +55,7 @@ void Kinematics::setLocalRotation(Part **parts, bool isStraightTrajectory) {
                 //if the link is not supposed to rotate
                 parts[i]->setLocalRotation((GLfloat[3]) {0, 0, 0});
             } else {
-                parts[i]->setLocalRotation((GLfloat[3]) {currentRotation8[LINK_ID_TO_ROTATION_MAPPING[i]], 0, 0});
+                parts[i]->setLocalRotation((GLfloat[3]) {currentRotations[LINK_ID_TO_ROTATION_MAPPING[i]], 0, 0});
             }
         }
     }
@@ -84,57 +87,63 @@ void Kinematics::setLocalTranslation(Part *torso) {
 /**
  * calculated all coeffieient matrices for a cycle of two steps forward,
  * i.e. left leg fully streched then right leg fully streched
- * then store in coefficientMatrices[20][4][8] (there are 20 segments for one cycle)
+ * then store in coefficientMatrices[20][4][10] (there are 20 segments for one cycle)
  */
 
 void Kinematics::calculateAllCoefficientMatrices() {
 
     initiate();
 
-    float controlPointArray8d[NUMBER_OF_DOF_FOR_NON_TORSO][NUMBER_OF_SEGMENT] = {};
+    float controlPointArray10d[NUMBER_OF_DOF_FOR_NON_TORSO][NUMBER_OF_SEGMENT] = {};
     int i,j,k;
     for ( i = 0; i < NUMBER_OF_DOF_FOR_NON_TORSO; i++) {
         for(j = 0; j < NUMBER_OF_SEGMENT; j++){
             switch (i) {
                 case 0:
-                    controlPointArray8d[i][j] = controlPoints_l_t[j];
+                    controlPointArray10d[i][j] = controlPoints_l_t[j];
                     break;
                 case 1:
-                    controlPointArray8d[i][j] = controlPoints_r_t[j];
+                    controlPointArray10d[i][j] = controlPoints_r_t[j];
                     break;
                 case 2:
-                    controlPointArray8d[i][j] = controlPoints_l_c[j];
+                    controlPointArray10d[i][j] = controlPoints_l_c[j];
                     break;
                 case 3:
-                    controlPointArray8d[i][j] = controlPoints_r_c[j];
+                    controlPointArray10d[i][j] = controlPoints_r_c[j];
                     break;
                 case 4:
-                    controlPointArray8d[i][j] = controlPoints_l_u[j];
+                    controlPointArray10d[i][j] = controlPoints_l_u[j];
                     break;
                 case 5:
-                    controlPointArray8d[i][j] = controlPoints_r_u[j];
+                    controlPointArray10d[i][j] = controlPoints_r_u[j];
                     break;
                 case 6:
-                    controlPointArray8d[i][j] = controlPoints_l_f[j];
+                    controlPointArray10d[i][j] = controlPoints_l_fore[j];
                     break;
                 case 7:
-                    controlPointArray8d[i][j] = controlPoints_r_f[j];
+                    controlPointArray10d[i][j] = controlPoints_r_fore[j];
+                    break;
+                case 8:
+                    controlPointArray10d[i][j] = controlPoints_l_foot[j];
+                    break;
+                case 9:
+                    controlPointArray10d[i][j] = controlPoints_r_foot[j];
                     break;
                 default:
                     break;
             }
         }
     }
-    // first prepare geometryMatrices GLfloat geometryMatrices[20][4][8] = {} TODO test this
+    // first prepare geometryMatrices GLfloat geometryMatrices[20][4][10] = {} TODO test this
     for (k = 0; k < NUMBER_OF_SEGMENT; k++) {
         //TODO test
         cout<<"\n";
-        for (i = k; i < k + NUMBER_OF_CONTROL_POINT_FOR_CUBIC_SPLINE; i++) {
+        for (i = k; i < k + NUMBER_OF_CONTROL_POINT_FOR_CUBIC; i++) {
             cout<<"\n";
             for (j = 0; j < NUMBER_OF_DOF_FOR_NON_TORSO; j++) {
                 geometryMatrices[k][i - k][j] =
                         (i < NUMBER_OF_SEGMENT)
-                        ? controlPointArray8d[j][i] : controlPointArray8d[j][i % NUMBER_OF_SEGMENT];
+                        ? controlPointArray10d[j][i] : controlPointArray10d[j][i % NUMBER_OF_SEGMENT];
 
                 cout<<geometryMatrices[k][i - k][j]<<"\t";
             }
@@ -142,9 +151,9 @@ void Kinematics::calculateAllCoefficientMatrices() {
         cout<<"\n";
     }
 
-    // then prepare all coefficient matrices GLfloat coefficientMatrices[20][4][8] = {} TODO test this
+    // then prepare all coefficient matrices GLfloat coefficientMatrices[20][4][10] = {} TODO test this
     for (i = 0; i < NUMBER_OF_SEGMENT; i++) {
-        InterpolationHelper::calculate8dCoefficientMatrix(
+        InterpolationHelper::calculate10dCoefficientMatrix(
                 coefficientMatrices[i], 0, geometryMatrices[i]);
     }
 
@@ -157,9 +166,9 @@ void Kinematics::initiate() {
     idleTorsoPos = 50;
     idleSpeed = (GLfloat) -0.1;
 
-    geometryMatrices[20][4][8] = {};
-    coefficientMatrices[20][4][8] = {};
-    currentRotation8[8] = {};
+    geometryMatrices[20][4][10] = {};
+    coefficientMatrices[20][4][10] = {};
+    currentRotations[10] = {};
 
     tInSegment = 0;
     cubicTimeVector[4] = {};
