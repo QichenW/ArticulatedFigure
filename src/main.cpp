@@ -9,8 +9,8 @@
 #include <StringUtils.h>
 #include <matrix/InterpolationHelper.h>
 #include <articulation/Part.h>
-#include <articulation/ForwardKinematics.h>
 #include <articulation/DrawLinks.h>
+#include <articulation/Kinematics.h>
 
 using namespace std;
 
@@ -48,8 +48,8 @@ void displayObject() {
 
     //TODO insert real local rotation and translation
     //only the local translation of torso change
-    ForwardKinematics::setLocalTranslation(parts[0]);
-    ForwardKinematics::setLocalRotation(parts, false);
+    Kinematics::setLocalTranslation(parts[0]);
+    Kinematics::setLocalRotation(parts, false);
 
     drawLinks(false);
 }
@@ -124,14 +124,14 @@ void drawFrame() {
         prefs.resetTimeProgress();
         prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
         // move and rotate the figure
-        ForwardKinematics::setLocalRotation(parts, true);
+        Kinematics::setLocalRotation(parts, true);
         drawLinks(true);
         glPopMatrix();
         return;
     }
 
     /** the interpolation for rotation of links other that torso is NOT written here,
-     * it is written in class ForwardKinematics **/
+     * it is written in class Kinematics **/
 
     // prepare the translation vector for torso
     InterpolationHelper::
@@ -150,7 +150,7 @@ void drawFrame() {
         InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.currentCoefficientMatrices->qRotation);
 
         // move and rotate the torso; rotate other links
-        ForwardKinematics::setLocalRotation(parts, true);
+        Kinematics::setLocalRotation(parts, true);
         drawLinks(true);
     }
     glPopMatrix();
@@ -180,7 +180,7 @@ void display(void) {
  * openGL works in a right-handed coordinate system by default
  * **/
 int main(int argc, char **argv) {
-    // initiate an instance of prefs to store the user preference
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(1280, 720);
@@ -189,10 +189,14 @@ int main(int argc, char **argv) {
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutIdleFunc(display);
-    UserInputManager(&window, &prefs);
     glutKeyboardFunc(UserInputManager::keyboardFunc);
     glutMouseFunc(UserInputManager::mouseFunc);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // calculate All coefficient matrices for walking cycle interpolation
+    Kinematics::calculateAllCoefficientMatrices();
+    // initiate an instance of prefs to store the user preference
+    UserInputManager(&window, &prefs);
+
 
     //load the obj files of parts, and create the drawing list
     DrawLinks::drawLinks(parts);

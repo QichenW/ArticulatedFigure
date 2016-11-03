@@ -21,9 +21,9 @@ static const GLfloat NECK_TRANSLATE_2[3] ={0,6.5,0};
 
 static const GLfloat HEAD_TRANSLATE[3] ={0,4,0};
 
-static const GLfloat UPPER_ARM_TRANSLATE_1[3] ={0,4.25,0};
-static const GLfloat LEFT_UPPER_ARM_TRANSLATE_2[3] ={-4.75,-2,0};
-static const GLfloat RIGHT_UPPER_ARM_TRANSLATE_2[3] ={4.75,-2,0};
+static const GLfloat UPPER_ARM_TRANSLATE_1[3] ={0,-4.25,0};
+static const GLfloat LEFT_UPPER_ARM_TRANSLATE_2[3] ={-4.75,6.5,0};
+static const GLfloat RIGHT_UPPER_ARM_TRANSLATE_2[3] ={4.75,6.5,0};
 
 static const GLfloat FOREARM_TRANSLATE_1[3] ={0,-4,0};
 static const GLfloat FOREARM_TRANSLATE_2[3] ={0,-4,0};
