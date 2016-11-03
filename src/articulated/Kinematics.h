@@ -29,7 +29,7 @@ private:
     static GLfloat cubicTimeVector[4];
 
     // t parameter for interpolation and its incremental interval
-    static constexpr float deltaT =  0.1196; //TODO write the reasoning for this
+    static constexpr float deltaT =  0.1196;
     static GLfloat tInSegment;
 
     // identifier of current curve for curve concatenation

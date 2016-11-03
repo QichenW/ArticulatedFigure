@@ -35,8 +35,6 @@ void Kinematics::setLocalRotation(Part **parts, bool isStraightTrajectory) {
 
     InterpolationHelper::prepare10dVector(currentRotations, cubicTimeVector, coefficientMatrices[currentSegment]);
 
-//TODO test it
-
     int i;
 
     for (i = 0; i < TOTAL_NUMBER_OF_LINKS; i++){
@@ -134,9 +132,8 @@ void Kinematics::calculateAllCoefficientMatrices() {
             }
         }
     }
-    // first prepare geometryMatrices GLfloat geometryMatrices[20][4][10] = {} TODO test this
+    // first prepare geometryMatrices GLfloat geometryMatrices[20][4][10] = {}
     for (k = 0; k < NUMBER_OF_SEGMENT; k++) {
-        //TODO test
         cout<<"\n";
         for (i = k; i < k + NUMBER_OF_CONTROL_POINT_FOR_CUBIC; i++) {
             cout<<"\n";
@@ -151,7 +148,7 @@ void Kinematics::calculateAllCoefficientMatrices() {
         cout<<"\n";
     }
 
-    // then prepare all coefficient matrices GLfloat coefficientMatrices[20][4][10] = {} TODO test this
+    // then prepare all coefficient matrices GLfloat coefficientMatrices[20][4][10] = {}
     for (i = 0; i < NUMBER_OF_SEGMENT; i++) {
         InterpolationHelper::calculate10dCoefficientMatrix(
                 coefficientMatrices[i], 0, geometryMatrices[i]);
