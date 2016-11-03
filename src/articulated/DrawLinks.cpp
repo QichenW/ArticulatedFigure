@@ -41,7 +41,7 @@ static const GLfloat CALF_TRANSLATE_2[3] ={0,-4.25,0};
 static const GLfloat FOOT_TRANSLATE_1[3] ={0,-0.2,-1};
 static const GLfloat FOOT_TRANSLATE_2[3] ={0,-4.5,0};
 
-void DrawLinks::drawLinks(Part **links) {
+void DrawLinks::prepareLinks(Part **links) {
     // load obj files and create Part instances
     GLuint torsoObjID = SimpleObjLoader::loadObj(TORSO_OBJ_NAME, 1, 1.0);
     links[0] = new Part(1, torsoObjID, (GLfloat *) NO_VECTOR3, (GLfloat *) NO_VECTOR3, nullptr);

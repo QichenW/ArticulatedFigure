@@ -7,7 +7,7 @@
 
 #include "SimpleObjLoader.h"
 #include "setup/Preferences.h"
-#include "articulation/Part.h"
+#include "articulated/Part.h"
 
 #if defined(__APPLE__)
 #include <GLUT/glut.h>
@@ -18,7 +18,7 @@
 class DrawLinks {
 
 public:
-    static void drawLinks(Part **links);
+    static void prepareLinks(Part **links);
 
 };
 

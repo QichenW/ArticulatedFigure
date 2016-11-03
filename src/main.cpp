@@ -8,9 +8,9 @@
 #include <UserInputManager.h>
 #include <StringUtils.h>
 #include <matrix/InterpolationHelper.h>
-#include <articulation/Part.h>
-#include <articulation/DrawLinks.h>
-#include <articulation/Kinematics.h>
+#include <articulated/Part.h>
+#include <articulated/DrawLinks.h>
+#include <articulated/Kinematics.h>
 
 using namespace std;
 
@@ -83,7 +83,6 @@ void drawLinks(bool isKeyFraming) {
                         parts[i]->localRotation, parts[i]->localTranslation, false);
                 parts[i]->setCombinedTransitions(combinedTransformation);
             } else{
-                //TODO if (isKeyFraming)
                 combinedTransformation = RotationHelper::
                 generateFlattenedTransformationMatrix(quaternion, translation, true);
                 parts[i]->setCombinedTransitions(combinedTransformation);
@@ -199,7 +198,7 @@ int main(int argc, char **argv) {
 
 
     //load the obj files of parts, and create the drawing list
-    DrawLinks::drawLinks(parts);
+    DrawLinks::prepareLinks(parts);
 
     UserInputManager::createMouseMenu();
     glutMainLoop();
