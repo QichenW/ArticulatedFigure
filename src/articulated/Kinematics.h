@@ -45,8 +45,8 @@ private:
     static GLfloat idleTorsoPos;
     static float idleSpeed;
 
-    // the manual points for left/right calfs, thighs, upper-arms, forearms and neck
-    //each cycle has 20 manual points
+    // the control points for left/right calfs, thighs, upper-arms, forearms and neck
+    //each cycle has 20 control points
     // left thigh's rotation
 
     float static constexpr controlPoints_l_t[20] =   {  -28.53, -30.00, -28.53, -24.27, -17.63, -9.27, 0,
