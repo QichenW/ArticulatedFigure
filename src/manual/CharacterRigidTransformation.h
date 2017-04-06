@@ -1,0 +1,14 @@
+//
+// Created by Qichen on 4/6/17.
+//
+
+#ifndef ANIMATIONS_CHARACTERRIGIDTRANSFORMATION_H
+#define ANIMATIONS_CHARACTERRIGIDTRANSFORMATION_H
+
+
+class CharacterRigidTransformation {
+//TODO implement this
+};
+
+
+#endif //ANIMATIONS_CHARACTERRIGIDTRANSFORMATION_H

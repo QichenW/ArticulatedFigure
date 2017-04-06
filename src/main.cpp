@@ -18,18 +18,18 @@ Part *parts[15];
 Preferences prefs;
 int curveSegmentAmount, currentSegment;
 GLfloat increment = 0.008;
-
+GLfloat cameraPos[3] = {}, cameraLookingAt[3] = {};
 GLfloat tVector[4]={}, quaternion[4] = {}, eulerAngle[3] = {}, translation[3] = {};
 int window;
 
 void drawFrame();
+void drawGrids(float h);
 
 void reshape(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(60, (GLfloat) w / (GLfloat) h, 0.1, 1000.0);
-    glMatrixMode(GL_MODELVIEW);
 }
 
 /***
@@ -37,33 +37,29 @@ void reshape(int w, int h) {
  */
 void displayObject() {
 
-    glLoadIdentity();
-    glColor3f(0.1, 0.45, 0.1);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     //move the model view away from the camera, so that we are not inside the object1
-    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,10,-20,1});
-
-    //TODO insert real local rotation and translation
-    //only the local translation of torso change
+    gluLookAt(0, -10, 100, 0, 0, -1000, 0, 1, 0);
+    glColor3f(0.1, 0.45, 0.1);
+    drawGrids((float) -30);
+    //only the local translation of torso change, todo, this is where idle figure is moved
     Kinematics::setLocalTranslation(parts[0]);
     Kinematics::setLocalRotation(parts, false);
 
     DrawLinks::drawLinks(parts, quaternion, translation, false);
 }
 
-
-void drawLiks(bool isKeyFraming) {
-
-}
-
 /****
  * This function is for drawing the frames in the interpolated animation.
  */
 void drawFrame() {
+    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glPushMatrix();
+    gluLookAt(0, -10, 100, 0, 0, -1000, 0, 1, 0);
+    glColor3f(0.1, 0.45, 0.1);
+    drawGrids((float) -25);
     //move the model view away from the camera, so that we are not inside the object
-    glMultMatrixf((GLfloat []){1,0,0,0,0,1,0,0,0,0,1,0,0,10,-95,1});
     glColor3f(0.1, 0.45, 0.1);
 
     // prepare the T vector for current time, then increment time.
@@ -78,7 +74,6 @@ void drawFrame() {
         prefs.currentCoefficientMatrices->printCurrentCoefficientMatrices();
         if (currentSegment == curveSegmentAmount) {
             // if current curve is the last segment in trajectory, end the animation then return
-            glPopMatrix();
             prefs.setIsPlaying(false);
             return;
         }
@@ -89,7 +84,6 @@ void drawFrame() {
         // move and rotate the figure
         Kinematics::setLocalRotation(parts, true);
         DrawLinks::drawLinks(parts, quaternion, translation, true);
-        glPopMatrix();
         return;
     }
 
@@ -142,6 +136,31 @@ void display(void) {
 }
 
 /**
+ * from gwu example
+ * @param height
+ */
+void drawGrids( float height ) {
+    float step = 5.0f;
+
+    int n = 20;
+
+    float r = step * n;
+
+    glBegin( GL_LINES );
+
+    for ( int i = -n; i <= n; i++ ) {
+        glVertex3f( i * step, height, -r );
+        glVertex3f( i * step, height, +r );
+    }
+
+    for ( int i = -n; i <= n; i++ ) {
+        glVertex3f( -r, height, i * step );
+        glVertex3f( +r, height, i * step );
+    }
+
+    glEnd();
+}
+/**
  *  Note that openGL works in a right-handed coordinate system by default
  * **/
 int main(int argc, char **argv) {
@@ -150,7 +169,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(1280, 720);
     glutInitWindowPosition(100, 100);
-    window = glutCreateWindow("CSCI 6555 project 2 : Articulated Figure");
+    window = glutCreateWindow("project 2 : 3D transformations and Articulated Figure with OpenGL");
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutIdleFunc(display);
