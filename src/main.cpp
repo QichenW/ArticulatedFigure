@@ -157,6 +157,8 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(UserInputManager::keyboardFunc);
     glutMouseFunc(UserInputManager::mouseFunc);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);//less or equal
     // calculate All coefficient matrices for walking cycle interpolation
     Kinematics::calculateAllCoefficientMatrices();
     // initiate an instance of prefs to store the user preference
@@ -165,7 +167,6 @@ int main(int argc, char **argv) {
 
     //load the obj files of parts, and create the drawing list
     DrawLinks::prepareLinks(parts);
-
     UserInputManager::createMouseMenu();
     glutMainLoop();
     return 0;

@@ -16,14 +16,16 @@
 #include <GL/glut.h>
 #endif
 
+using namespace std;
+
 class SimpleObjLoader
 {
 public:
     static GLuint loadObj(char *fileName, int objNo, float scale);
 
-    static void recordObjectAsTrianglesWithNoVt();
-
     static void recordObjectAsTrianglesWithNoVtNoVn();
+
+    static void randomizeTheColor(GLfloat *des, int mode);
 };
 
 #endif //GLUTPROJECT_SIMPLEOBJHEADER_H
