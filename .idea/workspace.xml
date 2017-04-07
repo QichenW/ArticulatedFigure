@@ -15,19 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4041625e-e32e-407b-8c5d-3aafbe9cd215" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/matrix/VectorCalculation.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/matrix/VectorCalculation.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/manual/CharacterRigidTransformation.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/manual/CharacterRigidTransformation.h" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulated/Kinematics.cpp" afterPath="$PROJECT_DIR$/src/articulated/Kinematics.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulated/Kinematics.h" afterPath="$PROJECT_DIR$/src/articulated/Kinematics.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/manual/CameraMotion.cpp" afterPath="$PROJECT_DIR$/src/manual/CameraMotion.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/manual/CameraMotion.h" afterPath="$PROJECT_DIR$/src/manual/CameraMotion.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/UserInputManager.cpp" afterPath="$PROJECT_DIR$/src/ui/UserInputManager.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/UserInputManager.h" afterPath="$PROJECT_DIR$/src/ui/UserInputManager.h" />
     </list>
     <ignored path="Animations.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,7 +41,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -85,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserInputManager.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserInputManager.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+              <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -124,8 +115,8 @@
       <file leaf-file-name="CameraMotion.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="31" column="57" lean-forward="false" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
               <folding>
                 <element signature="e#131#153#0" expanded="true" />
                 <element signature="e#237#257#0" expanded="true" />
@@ -137,8 +128,8 @@
       <file leaf-file-name="CameraMotion.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+            <state relative-caret-position="195">
+              <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
               <folding>
                 <element signature="e#39#76#0" expanded="true" />
               </folding>
@@ -229,9 +220,9 @@
         <option value="$PROJECT_DIR$/src/ui/UserInputManager.h" />
         <option value="$PROJECT_DIR$/src/matrix/VectorCalculation.cpp" />
         <option value="$PROJECT_DIR$/src/matrix/VectorCalculation.h" />
-        <option value="$PROJECT_DIR$/src/manual/CameraMotion.cpp" />
-        <option value="$PROJECT_DIR$/src/manual/CameraMotion.h" />
         <option value="$PROJECT_DIR$/src/ui/UserInputManager.cpp" />
+        <option value="$PROJECT_DIR$/src/manual/CameraMotion.h" />
+        <option value="$PROJECT_DIR$/src/manual/CameraMotion.cpp" />
       </list>
     </option>
   </component>
@@ -621,7 +612,7 @@
       <workItem from="1483347504210" duration="1011000" />
       <workItem from="1483350639699" duration="5825000" />
       <workItem from="1491443440171" duration="11479000" />
-      <workItem from="1491538286946" duration="9436000" />
+      <workItem from="1491538286946" duration="10521000" />
     </task>
     <task id="LOCAL-00001" summary="RotationHelper::rightDotProduct done">
       <created>1476509705914</created>
@@ -777,11 +768,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491513781593</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="camera control added">
+      <created>1491548597896</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1491548597896</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201351000" />
+    <option name="totallyTimeSpent" value="202436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -851,7 +849,8 @@
     <MESSAGE value=".gitignore created" />
     <MESSAGE value="now has solid fill of polygons" />
     <MESSAGE value="now has grids on floor" />
-    <option name="LAST_COMMIT_MESSAGE" value="now has grids on floor" />
+    <MESSAGE value="camera control added" />
+    <option name="LAST_COMMIT_MESSAGE" value="camera control added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1038,6 +1037,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,16 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-          <folding>
-            <element signature="e#39#76#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/matrix/VectorCalculation.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1195,29 +1185,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#131#153#0" expanded="true" />
-            <element signature="e#237#257#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1229,6 +1200,35 @@
           <folding>
             <element signature="e#224#251#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding>
+            <element signature="e#39#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="31" column="57" lean-forward="false" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
+          <folding>
+            <element signature="e#131#153#0" expanded="true" />
+            <element signature="e#237#257#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

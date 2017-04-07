@@ -25,9 +25,11 @@ public:
 
     static void prepare();
 
+    static void pitch(bool pitchUp);
+
 private:
     static GLfloat theta, disToLookPoint;
-    static const GLfloat ANGLE_INCREMENT;
+    static const GLfloat ANGLE_INCREMENT, PITCH_INCREMENT;
     static const GLfloat ZOOM_INCREMENT;
 };
 

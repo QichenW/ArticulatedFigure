@@ -4,13 +4,14 @@
 
 #include <matrix/VectorCalculation.h>
 #include "CameraMotion.h"
-GLfloat CameraMotion::cameraPos[3] = {0, -10, 100};
+GLfloat CameraMotion::cameraPos[3] = {0, 0, 100};
 GLfloat CameraMotion::cameraLookingAt[3] = {0, 0, -100};
 GLfloat CameraMotion::cameraUp[3] = {0, 1, 0};
 GLfloat CameraMotion::theta = 0;
 GLfloat CameraMotion::disToLookPoint;
 const GLfloat CameraMotion::ANGLE_INCREMENT = (const GLfloat) (M_PI / 36.0);
 const GLfloat CameraMotion::ZOOM_INCREMENT = 10;
+const GLfloat CameraMotion::PITCH_INCREMENT= 10;
 
 
 /**
@@ -62,5 +63,18 @@ void CameraMotion::move(bool isClockWise) {
  * prepare for camera motion
  */
 void CameraMotion::prepare() {
+    disToLookPoint = VectorCalculation::getDistance(cameraLookingAt, cameraPos);
+}
+
+/**
+ * change the z direction of the camera
+ * @param pitchUp - true if pitch up, false if pitch down
+ */
+void CameraMotion::pitch(bool pitchUp) {
+    if(pitchUp){
+        cameraLookingAt[1] += PITCH_INCREMENT;
+    } else {
+        cameraLookingAt[1] -= PITCH_INCREMENT;
+    }
     disToLookPoint = VectorCalculation::getDistance(cameraLookingAt, cameraPos);
 }

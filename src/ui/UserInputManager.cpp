@@ -90,6 +90,12 @@ void UserInputManager::keyboardFunc(unsigned char key, int x, int y) {
         case 'l':
             CameraMotion::move(false);
             break;
+        case 'u':
+            CameraMotion::pitch(true);
+            break;
+        case 'i':
+            CameraMotion::pitch(false);
+            break;
         case 'q':
         case 'Q':
         case 27:    /* ESC */
