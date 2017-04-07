@@ -39,8 +39,6 @@ private:
     static constexpr int LINK_ID_TO_ROTATION_MAPPING[TOTAL_NUMBER_OF_LINKS] = {
             -1, 0, 1, 2, 3, 8, 9, -1, -1, 4, 5, 6, 7, -1, -1};
 
-
-
     // for idle straight line walking only
     static GLfloat idleTorsoPos;
     static float idleSpeed;

@@ -2,10 +2,6 @@
 // Created by Qichen on 9/23/16.
 //
 
-#include <cstdlib>
-#include <setup/Preferences.h>
-#include <nfd.h>
-#include <setup/SetupFileLoader.h>
 #include "UserInputManager.h"
 
 static int* windowID;
@@ -20,6 +16,9 @@ Preferences *prefsPointer;
 UserInputManager::UserInputManager(int * window, Preferences* preferences) {
     windowID = window;
     prefsPointer = preferences;
+    // prepare the camera motion parameters
+    CameraMotion::prepare();
+
 }
 
 void UserInputManager::setMouseMenuBehavior(int id){
@@ -78,6 +77,18 @@ void UserInputManager::keyboardFunc(unsigned char key, int x, int y) {
     switch ((char) key) {
         case 'a':
             prefsPointer->resetPreferences();
+            break;
+        case 'j':
+            CameraMotion::zoom(true);
+            break;
+        case 'k':
+            CameraMotion::zoom(false);
+            break;
+        case 'h':
+            CameraMotion::move(true);
+            break;
+        case 'l':
+            CameraMotion::move(false);
             break;
         case 'q':
         case 'Q':

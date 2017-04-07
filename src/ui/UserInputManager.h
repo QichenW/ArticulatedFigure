@@ -5,6 +5,11 @@
 #ifndef GLUTPROJECT_USERINPUTMANAGER_H
 #define GLUTPROJECT_USERINPUTMANAGER_H
 
+#include <cstdlib>
+#include <setup/Preferences.h>
+#include <nfd.h>
+#include <setup/SetupFileLoader.h>
+#include <manual/CameraMotion.h>
 // glut
 #if defined(__APPLE__)
 #include <GLUT/glut.h>

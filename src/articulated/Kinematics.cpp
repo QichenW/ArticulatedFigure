@@ -83,8 +83,8 @@ void Kinematics::setLocalTranslation(Part *torso) {
 
 
 /**
- * calculated all coeffieient matrices for a cycle of two steps forward,
- * i.e. left leg fully streched then right leg fully streched
+ * calculated all coefficient matrices for a cycle of two steps forward,
+ * i.e. left leg fully stretched then right leg fully stretched
  * then store in coefficientMatrices[20][4][10] (there are 20 segments for one cycle)
  */
 

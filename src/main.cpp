@@ -11,6 +11,7 @@
 #include <articulated/Part.h>
 #include <articulated/DrawLinks.h>
 #include <articulated/Kinematics.h>
+#include <manual/CameraMotion.h>
 
 using namespace std;
 
@@ -18,7 +19,6 @@ Part *parts[15];
 Preferences prefs;
 int curveSegmentAmount, currentSegment;
 GLfloat increment = 0.008;
-GLfloat cameraPos[3] = {}, cameraLookingAt[3] = {};
 GLfloat tVector[4]={}, quaternion[4] = {}, eulerAngle[3] = {}, translation[3] = {};
 int window;
 
@@ -40,7 +40,9 @@ void displayObject() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     //move the model view away from the camera, so that we are not inside the object1
-    gluLookAt(0, -10, 100, 0, 0, -1000, 0, 1, 0);
+    gluLookAt(CameraMotion::cameraPos[0], CameraMotion::cameraPos[1], CameraMotion::cameraPos[2],
+              CameraMotion::cameraLookingAt[0], CameraMotion::cameraLookingAt[1], CameraMotion::cameraLookingAt[2],
+              CameraMotion::cameraUp[0], CameraMotion::cameraUp[1], CameraMotion::cameraUp[2]);
     glColor3f(0.1, 0.45, 0.1);
     drawGrids((float) -30);
     //only the local translation of torso change, todo, this is where idle figure is moved
@@ -56,7 +58,10 @@ void displayObject() {
 void drawFrame() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(0, -10, 100, 0, 0, -1000, 0, 1, 0);
+    //move the model view away from the camera, so that we are not inside the object1
+    gluLookAt(CameraMotion::cameraPos[0], CameraMotion::cameraPos[1], CameraMotion::cameraPos[2],
+              CameraMotion::cameraLookingAt[0], CameraMotion::cameraLookingAt[1], CameraMotion::cameraLookingAt[2],
+              CameraMotion::cameraUp[0], CameraMotion::cameraUp[1], CameraMotion::cameraUp[2]);
     glColor3f(0.1, 0.45, 0.1);
     drawGrids((float) -25);
     //move the model view away from the camera, so that we are not inside the object
@@ -169,7 +174,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(1280, 720);
     glutInitWindowPosition(100, 100);
-    window = glutCreateWindow("project 2 : 3D transformations and Articulated Figure with OpenGL");
+    window = glutCreateWindow("Project 2 : 3D transformations and Articulated Figure with OpenGL");
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutIdleFunc(display);
