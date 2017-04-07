@@ -6,18 +6,18 @@
 #define GLUTPROJECT_SETUPFILELOADER_H
 
 
-#include "Preferences.h"
+#include <string>
+#include <articulated/ArticulatedMan.h>
+
 #if defined(__APPLE__)
 #include <GLUT/glut.h>
-#include <string>
-
 #else
 #include <GL/glut.h>
 #endif
 
 class SetupFileLoader {
 public:
-    static void loadPreferencesFromTextFile(char *path, Preferences *pPreferences);
+    static void loadPreferencesFromTextFile(char *path, ArticulatedMan *pPreferences);
 };
 
 

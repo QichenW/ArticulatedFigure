@@ -11,7 +11,7 @@ using namespace std;
  * @param path is provided by UserInputManager::loadUserInputFromFileDialog()
  * @param pPreferences
  */
-void SetupFileLoader::loadPreferencesFromTextFile(char *path, Preferences *pPreferences) {
+void SetupFileLoader::loadPreferencesFromTextFile(char *path, ArticulatedMan *pPreferences) {
     FILE *setupFilePointer;
     float tempFloat1, tempFloat2, tempFloat3;
     char firstWord[16];

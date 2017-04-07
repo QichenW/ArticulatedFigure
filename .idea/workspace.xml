@@ -15,10 +15,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4041625e-e32e-407b-8c5d-3aafbe9cd215" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/articulated/ArticulatedMan.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/articulated/ArticulatedMan.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/setup/Preferences.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/setup/Preferences.h" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/manual/CameraMotion.cpp" afterPath="$PROJECT_DIR$/src/manual/CameraMotion.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/manual/CameraMotion.h" afterPath="$PROJECT_DIR$/src/manual/CameraMotion.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/articulated/DrawLinks.h" afterPath="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setup/SetupFileLoader.cpp" afterPath="$PROJECT_DIR$/src/setup/SetupFileLoader.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setup/SetupFileLoader.h" afterPath="$PROJECT_DIR$/src/setup/SetupFileLoader.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/UserInputManager.cpp" afterPath="$PROJECT_DIR$/src/ui/UserInputManager.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/UserInputManager.h" afterPath="$PROJECT_DIR$/src/ui/UserInputManager.h" />
     </list>
     <ignored path="Animations.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +52,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
               <folding>
                 <element signature="e#224#251#0" expanded="true" />
               </folding>
@@ -53,35 +61,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetupFileLoader.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Preferences.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setup/Preferences.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-              <folding>
-                <element signature="e#144#166#0" expanded="true" />
-                <element signature="e#232#252#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserInputManager.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserInputManager.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="660">
+              <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+              <folding>
+                <element signature="e#40#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,24 +76,65 @@
       <file leaf-file-name="UserInputManager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state relative-caret-position="-24">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#119#137#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DrawLinks.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kinematics.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.cpp">
+      <file leaf-file-name="SetupFileLoader.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-831">
-              <caret line="88" column="2" lean-forward="false" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
+            <state relative-caret-position="122">
+              <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
               <folding>
-                <element signature="e#41#60#0" expanded="true" />
-                <marker date="1491542725000" expanded="true" signature="1235:2556" ph="{...}" />
-                <marker date="1491542725000" expanded="true" signature="2704:2869" ph="{...}" />
-                <marker date="1491542725000" expanded="true" signature="3155:5601" ph="{...}" />
-                <marker date="1491542725000" expanded="true" signature="5631:5894" ph="{...}" />
+                <element signature="e#118#135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetupFileLoader.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-399">
+              <caret line="13" column="76" lean-forward="false" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArticulatedMan.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/articulated/ArticulatedMan.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-619">
+              <caret line="87" column="29" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArticulatedMan.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/articulated/ArticulatedMan.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+              <folding>
+                <element signature="e#117#136#0" expanded="true" />
+                <element signature="e#331#351#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,47 +153,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraMotion.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/manual/CameraMotion.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-              <folding>
-                <element signature="e#39#76#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VectorCalculation.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/matrix/VectorCalculation.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VectorCalculation.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/matrix/VectorCalculation.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-              <folding>
-                <element signature="e#146#168#0" expanded="true" />
-                <element signature="e#252#272#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>man</find>
       <find>coefficientMatrices</find>
+      <find>tVector</find>
+      <find>curveSegmentAmount</find>
+      <find>prefs</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/backup/glew.glfw.txt" />
         <option value="$PROJECT_DIR$/data/troso.obj" />
         <option value="$PROJECT_DIR$/data/torso.obj" />
@@ -198,9 +193,6 @@
         <option value="$PROJECT_DIR$/src/setup/DrawLinks.h" />
         <option value="$PROJECT_DIR$/src/setup/DrawLinks.cpp" />
         <option value="$PROJECT_DIR$/src/articulation/Part.h" />
-        <option value="$PROJECT_DIR$/src/setup/SetupFileLoader.h" />
-        <option value="$PROJECT_DIR$/src/setup/Preferences.h" />
-        <option value="$PROJECT_DIR$/src/setup/Preferences.cpp" />
         <option value="$PROJECT_DIR$/src/articulation/ForwardKinematics.cpp" />
         <option value="$PROJECT_DIR$/src/articulation/Kinematics.cpp" />
         <option value="$PROJECT_DIR$/src/matrix/InterpolationHelper.cpp" />
@@ -208,7 +200,6 @@
         <option value="$PROJECT_DIR$/src/articulation/DrawLinks.cpp" />
         <option value="$PROJECT_DIR$/src/articulation/Kinematics.h" />
         <option value="$PROJECT_DIR$/src/ui/StringUtils.cpp" />
-        <option value="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
         <option value="$PROJECT_DIR$/src/articulated/DrawLinks.cpp" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/setup/SimpleObjLoader.h" />
@@ -216,13 +207,20 @@
         <option value="$PROJECT_DIR$/src/manual/CharacterRigidTransformation.h" />
         <option value="$PROJECT_DIR$/src/articulated/Kinematics.h" />
         <option value="$PROJECT_DIR$/src/articulated/Kinematics.cpp" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
-        <option value="$PROJECT_DIR$/src/ui/UserInputManager.h" />
         <option value="$PROJECT_DIR$/src/matrix/VectorCalculation.cpp" />
         <option value="$PROJECT_DIR$/src/matrix/VectorCalculation.h" />
-        <option value="$PROJECT_DIR$/src/ui/UserInputManager.cpp" />
         <option value="$PROJECT_DIR$/src/manual/CameraMotion.h" />
         <option value="$PROJECT_DIR$/src/manual/CameraMotion.cpp" />
+        <option value="$PROJECT_DIR$/src/ui/UserInputManager.cpp" />
+        <option value="$PROJECT_DIR$/src/setup/Preferences.h" />
+        <option value="$PROJECT_DIR$/src/setup/Preferences.cpp" />
+        <option value="$PROJECT_DIR$/src/articulated/DrawLinks.h" />
+        <option value="$PROJECT_DIR$/src/setup/SetupFileLoader.cpp" />
+        <option value="$PROJECT_DIR$/src/ui/UserInputManager.h" />
+        <option value="$PROJECT_DIR$/src/setup/SetupFileLoader.h" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/src/articulated/ArticulatedMan.cpp" />
+        <option value="$PROJECT_DIR$/src/articulated/ArticulatedMan.h" />
       </list>
     </option>
   </component>
@@ -351,6 +349,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="manual" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Animations" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ArticulatedFigure" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="articulated" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -612,7 +628,7 @@
       <workItem from="1483347504210" duration="1011000" />
       <workItem from="1483350639699" duration="5825000" />
       <workItem from="1491443440171" duration="11479000" />
-      <workItem from="1491538286946" duration="10521000" />
+      <workItem from="1491538286946" duration="16394000" />
     </task>
     <task id="LOCAL-00001" summary="RotationHelper::rightDotProduct done">
       <created>1476509705914</created>
@@ -775,11 +791,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491548597896</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="added one camera motion">
+      <created>1491549702892</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1491549702892</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202436000" />
+    <option name="totallyTimeSpent" value="208309000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -798,8 +821,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43883792" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.50277996" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.49722" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24966079" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -850,14 +873,15 @@
     <MESSAGE value="now has solid fill of polygons" />
     <MESSAGE value="now has grids on floor" />
     <MESSAGE value="camera control added" />
-    <option name="LAST_COMMIT_MESSAGE" value="camera control added" />
+    <MESSAGE value="added one camera motion" />
+    <option name="LAST_COMMIT_MESSAGE" value="added one camera motion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/main.cpp</url>
-          <line>128</line>
+          <line>124</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
@@ -875,27 +899,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/matrix/QuaternionConverter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/matrix/QuaternionConverter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/matrix/CoefficientMatrices.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/more_Quaternion-Catmull.txt" />
     <entry file="file://$PROJECT_DIR$/data/new_circle.txt" />
     <entry file="file://$PROJECT_DIR$/data/control_points/circle.txt" />
@@ -924,13 +927,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/ForwardKinematics.h" />
-    <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/Part.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1075,24 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
-          <folding>
-            <element signature="e#40#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup/Preferences.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="122" column="33" lean-forward="false" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1109,28 +1087,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-831">
           <caret line="88" column="2" lean-forward="false" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
           <folding>
-            <element signature="e#41#60#0" expanded="true" />
+            <element signature="e#41#60#0" expanded="false" />
             <marker date="1491542725000" expanded="true" signature="1235:2556" ph="{...}" />
             <marker date="1491542725000" expanded="true" signature="2704:2869" ph="{...}" />
             <marker date="1491542725000" expanded="true" signature="3155:5601" ph="{...}" />
@@ -1139,30 +1101,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/control_points.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/manual/CharacterRigidTransformation.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup/Preferences.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#144#166#0" expanded="true" />
-            <element signature="e#232#252#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1179,26 +1122,8 @@
         <state relative-caret-position="375">
           <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
           <folding>
-            <element signature="e#146#168#0" expanded="true" />
-            <element signature="e#252#272#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#224#251#0" expanded="true" />
+            <element signature="e#146#168#0" expanded="false" />
+            <element signature="e#252#272#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1208,7 +1133,7 @@
         <state relative-caret-position="195">
           <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
           <folding>
-            <element signature="e#39#76#0" expanded="true" />
+            <element signature="e#39#76#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1224,10 +1149,117 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulated/Kinematics.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/control_points.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/AppKit.framework/Headers/NSStepperCell.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setup/Preferences.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setup/Preferences.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulated/DrawLinks.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <caret line="13" column="76" lean-forward="false" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#119#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/UserInputManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+        <state relative-caret-position="660">
+          <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding>
+            <element signature="e#40#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setup/SetupFileLoader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding>
+            <element signature="e#118#135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+          <folding>
+            <element signature="e#224#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulated/ArticulatedMan.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+          <folding>
+            <element signature="e#117#136#0" expanded="true" />
+            <element signature="e#331#351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/articulated/ArticulatedMan.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="87" column="29" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
           <folding />
         </state>
       </provider>

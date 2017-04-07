@@ -6,14 +6,12 @@
 #define GLUTPROJECT_USERINPUTMANAGER_H
 
 #include <cstdlib>
-#include <setup/Preferences.h>
 #include <nfd.h>
 #include <setup/SetupFileLoader.h>
 #include <manual/CameraMotion.h>
 // glut
 #if defined(__APPLE__)
 #include <GLUT/glut.h>
-#include <setup/Preferences.h>
 
 #else
 #include <GL/glut.h>
@@ -27,7 +25,7 @@ private:
 //    static void orientationMenu(int id);
 //    static void inbetweeningMenu(int id);
 public:
-    UserInputManager(int * window, Preferences * preferences);
+    UserInputManager(int *window, ArticulatedMan *man);
     static void createMouseMenu();
     static void mouseFunc (int button, int state, int x, int y);
     static void keyboardFunc(unsigned char, int, int);

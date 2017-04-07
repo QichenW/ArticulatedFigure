@@ -2,20 +2,20 @@
 // Created by Qichen on 9/23/16.
 //
 
+#include <articulated/ArticulatedMan.h>
 #include "UserInputManager.h"
 
 static int* windowID;
 
-Preferences *prefsPointer;
+ArticulatedMan *manPointer;
 
 /****
  * This function describes the behavior of the right mouse button menu.
  * @param window is the identifier the opengl window
- * @param preferences is the setup for current animation
  */
-UserInputManager::UserInputManager(int * window, Preferences* preferences) {
+UserInputManager::UserInputManager(int *window, ArticulatedMan *man) {
     windowID = window;
-    prefsPointer = preferences;
+    manPointer = man;
     // prepare the camera motion parameters
     CameraMotion::prepare();
 
@@ -27,22 +27,22 @@ void UserInputManager::setMouseMenuBehavior(int id){
         case 1:
             // choose the user provided text file in a "native file dialog"
             if (loadUserInputFromFileDialog()) {
-                prefsPointer->setKeyFramesLoaded(true);
+                manPointer->setKeyFramesLoaded(true);
                 // then calculate the coefficient matrices for interpolation use
-                prefsPointer->calculateCoefficientMatrices();
+                manPointer->calculateCoefficientMatrices();
             }
             break;
         //reset the preferences
         case 2 :
-            prefsPointer->resetPreferences();
+            manPointer->resetPreferences();
             break;
         case 3 :
-            if (!prefsPointer->getAreKeyFramesLoaded()){
+            if (!manPointer->getAreKeyFramesLoaded()) {
                 /* TODO  show a message to let user load file first */
                 break;
             }
-            prefsPointer->resetTimeProgress();
-            prefsPointer->setIsPlaying(true);
+            manPointer->resetTimeProgress();
+            manPointer->isPlaying = true;
             break;
         default :
             break;
@@ -76,7 +76,7 @@ void UserInputManager::createMouseMenu() {
 void UserInputManager::keyboardFunc(unsigned char key, int x, int y) {
     switch ((char) key) {
         case 'a':
-            prefsPointer->resetPreferences();
+            manPointer->resetPreferences();
             break;
         case 'j':
             CameraMotion::zoom(true);
@@ -116,7 +116,7 @@ bool UserInputManager::loadUserInputFromFileDialog() {
     nfdresult_t result = NFD_OpenDialog( NULL, NULL, &outPath );
 
     if ( result == NFD_OKAY ) {
-        SetupFileLoader::loadPreferencesFromTextFile(outPath, prefsPointer);
+        SetupFileLoader::loadPreferencesFromTextFile(outPath, manPointer);
         puts("Success!");
         puts(outPath);
         free(outPath);

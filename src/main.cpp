@@ -7,19 +7,11 @@
 #include <RotationHelper.h>
 #include <UserInputManager.h>
 #include <StringUtils.h>
-#include <matrix/InterpolationHelper.h>
-#include <articulated/Part.h>
 #include <articulated/DrawLinks.h>
 #include <articulated/Kinematics.h>
-#include <manual/CameraMotion.h>
 
 using namespace std;
-
-Part *parts[15];
-Preferences prefs;
-int curveSegmentAmount, currentSegment;
-GLfloat increment = 0.008;
-GLfloat tVector[4]={}, quaternion[4] = {}, eulerAngle[3] = {}, translation[3] = {};
+ArticulatedMan *man;
 int window;
 
 void drawFrame();
@@ -46,10 +38,10 @@ void displayObject() {
     glColor3f(0.1, 0.45, 0.1);
     drawGrids((float) -30);
     //only the local translation of torso change, todo, this is where idle figure is moved
-    Kinematics::setLocalTranslation(parts[0]);
-    Kinematics::setLocalRotation(parts, false);
+    Kinematics::setLocalTranslation(man->parts[0]);
+    Kinematics::setLocalRotation(man->parts, false);
 
-    DrawLinks::drawLinks(parts, quaternion, translation, false);
+    DrawLinks::drawLinks(man->parts, man->quaternion, man->translation, false);
 }
 
 /****
@@ -71,24 +63,22 @@ void drawFrame() {
     // if reach the end of one curve segment, point to next segment/ if end of whole trajectory, stop the animation
     // then return
 
-    if(prefs.getTimeProgress()< 1.0){
-        InterpolationHelper::prepareTimeVector(tVector, prefs.getTimeProgress());
-        prefs.timeProceed(increment);
-    } else if (currentSegment <= curveSegmentAmount) {
+    if (man->isInterpolatingSubPath()) {
+        man->updateTimeVector();
+    } else {
         //if reach the end of current curve
-        prefs.currentCoefficientMatrices->printCurrentCoefficientMatrices();
-        if (currentSegment == curveSegmentAmount) {
+        if (man->finishedWhole()) {
             // if current curve is the last segment in trajectory, end the animation then return
-            prefs.setIsPlaying(false);
+            man->stopInterpolating();
             return;
         }
         // if current cure is not the last segment in trajectory, shift to next curve then return
-        currentSegment++;
-        prefs.resetTimeProgress();
-        prefs.currentCoefficientMatrices = prefs.currentCoefficientMatrices->next;
+        man->currentSegment++;
+        man->resetTimeProgress();
+        man->currentCoefficientMatrices = man->currentCoefficientMatrices->next;
         // move and rotate the figure
-        Kinematics::setLocalRotation(parts, true);
-        DrawLinks::drawLinks(parts, quaternion, translation, true);
+        Kinematics::setLocalRotation(man->parts, true);
+        DrawLinks::drawLinks(man->parts, man->quaternion, man->translation, true);
         return;
     }
 
@@ -97,23 +87,26 @@ void drawFrame() {
 
     // prepare the translation vector for torso
     InterpolationHelper::
-    prepareTranslationOrEulerAngleVector(translation, tVector, prefs.currentCoefficientMatrices->translation);
+    prepareTranslationOrEulerAngleVector(man->translation, ArticulatedMan::tVector,
+                                         man->currentCoefficientMatrices->translation);
 
-    if (prefs.getOrientationMode() == 0) {
+    if (man->getOrientationMode() == 0) {
         // if getting euler angle version of animation
         // prepare the euler angle vector for torso
         InterpolationHelper::
-        prepareTranslationOrEulerAngleVector(eulerAngle, tVector, prefs.currentCoefficientMatrices->eRotation);
+        prepareTranslationOrEulerAngleVector(man->eulerAngle, ArticulatedMan::tVector,
+                                             man->currentCoefficientMatrices->eRotation);
         // move the figure
-        glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(eulerAngle, translation, false));
+        glMultMatrixf(RotationHelper::generateFlattenedTransformationMatrix(man->eulerAngle, man->translation, false));
     } else {
         // if getting quaternion version of animation
         // prepare the quaternion vector
-        InterpolationHelper::prepareQuaternionVector(quaternion, tVector, prefs.currentCoefficientMatrices->qRotation);
+        InterpolationHelper::prepareQuaternionVector(man->quaternion, ArticulatedMan::tVector,
+                                                     man->currentCoefficientMatrices->qRotation);
 
         // move and rotate the torso; rotate other links
-        Kinematics::setLocalRotation(parts, true);
-        DrawLinks::drawLinks(parts, quaternion, translation, true);
+        Kinematics::setLocalRotation(man->parts, true);
+        DrawLinks::drawLinks(man->parts, man->quaternion, man->translation, true);
     }
     glPopMatrix();
 }
@@ -125,15 +118,15 @@ void display(void) {
     // the setup info char * on the bottom left corner on window when it is idle,
     // or the type of animation when playing animation
     UserInterfaceManager::renderStatusMessage(
-            prefs.getOrientationMode(), prefs.getInterpolationMode(), prefs.getIsPlaying());
-    if(!prefs.getIsPlaying()){
+            man->getOrientationMode(), man->getInterpolationMode(), man->isPlaying);
+    if (!man->isPlaying) {
         // if there is no user input, show an walking in straight line animation
         displayObject();
         //TODO the following two line is bad practice fix it later
-        currentSegment = 1;
-        prefs.currentCoefficientMatrices = prefs.pCoefficientMatrices;
+        man->currentSegment = 1;
+        man->currentCoefficientMatrices = man->pCoefficientMatrices;
     } else {
-        curveSegmentAmount = prefs.getKeyFrameAmount() - 3;
+        man->curveSegmentAmount = man->getKeyFrameAmount() - 3;
         drawFrame();
     }
     glutSwapBuffers(); //swap the buffers
@@ -184,13 +177,14 @@ int main(int argc, char **argv) {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);//less or equal
     // calculate All coefficient matrices for walking cycle interpolation
+    man = new ArticulatedMan();
     Kinematics::calculateAllCoefficientMatrices();
     // initiate an instance of prefs to store the user preference
-    UserInputManager(&window, &prefs);
+    UserInputManager(&window, man);
 
 
     //load the obj files of parts, and create the drawing list
-    DrawLinks::prepareLinks(parts);
+    DrawLinks::prepareLinks(man->parts);
     UserInputManager::createMouseMenu();
     glutMainLoop();
     return 0;

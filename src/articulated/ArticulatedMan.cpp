@@ -1,51 +1,74 @@
 //
-// Created by Qichen on 9/24/16.
+// Created by Qichen Wang on 4/7/17.
 //
 
-#include <iostream>
-#include "Preferences.h"
-#include "InterpolationHelper.h"
-#include "QuaternionConverter.h"
+#include "ArticulatedMan.h"
 
+const GLfloat ArticulatedMan::TIME_INCREMENT = 0.008;
+GLfloat ArticulatedMan::tVector[4] = {};
 
-/****
- * This class contains the setup for the animation.
- * The fields except the list of quaternions are interpreted from the user input script.
- * It also contains the coefficient matrices for the current time instance.
- */
-Preferences::Preferences() {
+ArticulatedMan::ArticulatedMan() {
+    isPlaying = false;
     resetPreferences();
 }
 
+/**
+ * update time and the time vector for interpolation
+ */
+void ArticulatedMan::updateTimeVector() {
+    InterpolationHelper::prepareTimeVector(tVector, timeProgress);
+    timeProgress += TIME_INCREMENT;
+}
+
+/**
+ * @return true, if the current interpolated sub-tour is not finished
+ */
+bool ArticulatedMan::isInterpolatingSubPath() {
+    return timeProgress < 1.0;
+}
+
+/**
+ * @return if all sub-tour has been interpolated
+ */
+bool ArticulatedMan::finishedWhole() {
+    return currentSegment == curveSegmentAmount;
+}
+
+/**
+ * reset the flag indicating that interpolating is done
+ */
+void ArticulatedMan::stopInterpolating() {
+    isPlaying = false;
+}
+
 // setters
-void Preferences::setKeyFramesLoaded(bool value) {
+void ArticulatedMan::setKeyFramesLoaded(bool value) {
     areKeyFramesLoaded = value;
 }
 
-void Preferences::setInterpolationMode(int mode) {
+void ArticulatedMan::setInterpolationMode(int mode) {
     interpolationMode = mode;
 }
 
-void Preferences::setOrientationMode(int mode) {
+void ArticulatedMan::setOrientationMode(int mode) {
     orientationMode = mode;
 }
 
 // getters
-bool Preferences::getAreKeyFramesLoaded() {
+bool ArticulatedMan::getAreKeyFramesLoaded() {
     return areKeyFramesLoaded;
 }
 
-int Preferences::getOrientationMode() {
+int ArticulatedMan::getOrientationMode() {
     return orientationMode;
 }
 
-int Preferences::getInterpolationMode() {
+int ArticulatedMan::getInterpolationMode() {
     return interpolationMode;
 }
 
-void Preferences::resetPreferences() {
+void ArticulatedMan::resetPreferences() {
     areKeyFramesLoaded = false;
-    isPlaying = false;
     interpolationMode = -1;
     orientationMode = -1;
     keyFrameAmount = 0;
@@ -53,27 +76,27 @@ void Preferences::resetPreferences() {
 }
 
 
-void Preferences::setKeyFrameAmount(int i) {
+void ArticulatedMan::setKeyFrameAmount(int i) {
     keyFrameAmount = i;
-    listOfPositions = new GLfloat*[i];
-    listOfEulerAngle = new GLfloat*[i];
+    listOfPositions = new GLfloat *[i];
+    listOfEulerAngle = new GLfloat *[i];
     //listOfQuaternion = new GLfloat*[i];
 
     pCoefficientMatrices = new CoefficientMatrices(orientationMode == 0, 0, keyFrameAmount - 3);
 }
 
-int Preferences::getKeyFrameAmount() const {
+int ArticulatedMan::getKeyFrameAmount() const {
     return keyFrameAmount;
 }
 
-void Preferences::addOnePosition(int index, GLfloat x, GLfloat y, GLfloat z) {
+void ArticulatedMan::addOnePosition(int index, GLfloat x, GLfloat y, GLfloat z) {
     listOfPositions[index] = new GLfloat[3];
     listOfPositions[index][0] = x;
     listOfPositions[index][1] = y;
     listOfPositions[index][2] = z;
 }
 
-void Preferences::addOneEulerAngle(int index, GLfloat pitch, GLfloat yaw, GLfloat roll) {
+void ArticulatedMan::addOneEulerAngle(int index, GLfloat pitch, GLfloat yaw, GLfloat roll) {
     listOfEulerAngle[index] = new GLfloat[3];
     listOfEulerAngle[index][0] = pitch;
     listOfEulerAngle[index][1] = yaw;
@@ -83,45 +106,37 @@ void Preferences::addOneEulerAngle(int index, GLfloat pitch, GLfloat yaw, GLfloa
 /****
  * print out the infomation for debug purposes
  */
-void Preferences::printLoadedPreferences() {
-    cout<< "number of key frames: "<< keyFrameAmount<<endl;
-    cout<< "orientation / interpolation: "<< orientationMode << '/' << interpolationMode <<endl;
-    int i ,j ;
+void ArticulatedMan::printLoadedPreferences() {
+    cout << "number of key frames: " << keyFrameAmount << endl;
+    cout << "orientation / interpolation: " << orientationMode << '/' << interpolationMode << endl;
+    int i, j;
     float l;
-    for(i = 0; i < keyFrameAmount; i++) {
-        for(j = 0; j < 3; j++) {
-        l =listOfPositions[i][j];
-            cout<< l << '\t';
+    for (i = 0; i < keyFrameAmount; i++) {
+        for (j = 0; j < 3; j++) {
+            l = listOfPositions[i][j];
+            cout << l << '\t';
         }
-        cout<< '\n';
+        cout << '\n';
     }
-    cout<< '\n';
-    for(i = 0; i < keyFrameAmount; i++) {
-        for(j = 0; j < 3; j++) {
-            l =listOfEulerAngle[i][j];
-            cout<< l << '\t';
+    cout << '\n';
+    for (i = 0; i < keyFrameAmount; i++) {
+        for (j = 0; j < 3; j++) {
+            l = listOfEulerAngle[i][j];
+            cout << l << '\t';
         }
-        cout<< '\n';
+        cout << '\n';
     }
 
-}
-
-void Preferences::setIsPlaying(bool i) {
-    isPlaying = i;
-}
-
-bool Preferences::getIsPlaying() {
-    return isPlaying;
 }
 
 /****
  *  get the coefficient matrices
  */
-void Preferences::calculateCoefficientMatrices() {
+void ArticulatedMan::calculateCoefficientMatrices() {
 
     int i;
     currentCoefficientMatrices = pCoefficientMatrices;
-    for (i = 0; i < keyFrameAmount - 3; i++){
+    for (i = 0; i < keyFrameAmount - 3; i++) {
 
         // calculate the position coefficient matrix for t
         // then store in translationCoefficientMatrix
@@ -144,15 +159,6 @@ void Preferences::calculateCoefficientMatrices() {
     }
 }
 
-GLfloat Preferences::getTimeProgress() {
-    return timeProgress;
-}
-
-void Preferences::timeProceed(GLfloat d) {
-    timeProgress += d;
-}
-
-void Preferences::resetTimeProgress() {
+void ArticulatedMan::resetTimeProgress() {
     timeProgress = 0;
-
 }
