@@ -37,7 +37,7 @@ public:
 
     bool finishedWhole();
 
-    void stopInterpolating();
+    void stopPlaying();
     /****
  * mode:
  * // orientationMode    -1: not chosen, 0 : euler angle, 1 : quaternion

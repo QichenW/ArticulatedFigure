@@ -37,7 +37,7 @@ bool ArticulatedMan::finishedWhole() {
 /**
  * reset the flag indicating that interpolating is done
  */
-void ArticulatedMan::stopInterpolating() {
+void ArticulatedMan::stopPlaying() {
     isPlaying = false;
 }
 

@@ -43,6 +43,7 @@ void Kinematics::setLocalRotation(Part **parts, bool isStraightTrajectory) {
                 /* interpolated trajectory for torso is done in main.cpp */
                 continue;
             }
+            // let the Articulated figure face the correct direction
             if (idleSpeed > 0){
                 parts[i]->setLocalRotation((GLfloat [3]){0,270,0});
             } else {

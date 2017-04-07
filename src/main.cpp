@@ -28,15 +28,6 @@ void reshape(int w, int h) {
  * display the figure when idle
  */
 void displayObject() {
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    //move the model view away from the camera, so that we are not inside the object1
-    gluLookAt(CameraMotion::cameraPos[0], CameraMotion::cameraPos[1], CameraMotion::cameraPos[2],
-              CameraMotion::cameraLookingAt[0], CameraMotion::cameraLookingAt[1], CameraMotion::cameraLookingAt[2],
-              CameraMotion::cameraUp[0], CameraMotion::cameraUp[1], CameraMotion::cameraUp[2]);
-    glColor3f(0.1, 0.45, 0.1);
-    drawGrids((float) -30);
     //only the local translation of torso change, todo, this is where idle figure is moved
     Kinematics::setLocalTranslation(man->parts[0]);
     Kinematics::setLocalRotation(man->parts, false);
@@ -48,17 +39,6 @@ void displayObject() {
  * This function is for drawing the frames in the interpolated animation.
  */
 void drawFrame() {
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    //move the model view away from the camera, so that we are not inside the object1
-    gluLookAt(CameraMotion::cameraPos[0], CameraMotion::cameraPos[1], CameraMotion::cameraPos[2],
-              CameraMotion::cameraLookingAt[0], CameraMotion::cameraLookingAt[1], CameraMotion::cameraLookingAt[2],
-              CameraMotion::cameraUp[0], CameraMotion::cameraUp[1], CameraMotion::cameraUp[2]);
-    glColor3f(0.1, 0.45, 0.1);
-    drawGrids((float) -25);
-    //move the model view away from the camera, so that we are not inside the object
-    glColor3f(0.1, 0.45, 0.1);
-
     // prepare the T vector for current time, then increment time.
     // if reach the end of one curve segment, point to next segment/ if end of whole trajectory, stop the animation
     // then return
@@ -69,7 +49,7 @@ void drawFrame() {
         //if reach the end of current curve
         if (man->finishedWhole()) {
             // if current curve is the last segment in trajectory, end the animation then return
-            man->stopInterpolating();
+            man->stopPlaying();
             return;
         }
         // if current cure is not the last segment in trajectory, shift to next curve then return
@@ -114,6 +94,15 @@ void drawFrame() {
 void display(void) {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    //move the model view away from the camera, so that we are not inside the object1
+    gluLookAt(CameraMotion::cameraPos[0], CameraMotion::cameraPos[1], CameraMotion::cameraPos[2],
+              CameraMotion::cameraLookingAt[0], CameraMotion::cameraLookingAt[1], CameraMotion::cameraLookingAt[2],
+              CameraMotion::cameraUp[0], CameraMotion::cameraUp[1], CameraMotion::cameraUp[2]);
+    glColor3f(0.1, 0.45, 0.1);
+    drawGrids((float) -30);
 
     // the setup info char * on the bottom left corner on window when it is idle,
     // or the type of animation when playing animation
